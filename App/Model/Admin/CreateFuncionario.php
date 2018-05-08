@@ -1,0 +1,42 @@
+<?php
+namespace App\Models;
+use App\Core\Model;
+use App\Controller\FuncoesController;
+
+require_once "../../../bootstrap/autoload.php";
+
+
+
+class CreateFuncionario extends Model {
+
+    //seleciona a tabela
+    protected $tabela = "funcionario";
+
+    public function CheckIsNull(array $array) {
+        if ($array['nome'] == '' || $array['rg'] == '' || $array['email'] == '' ||
+                $array['senha'] == '' || $array['repitaSenha'] == '' || $array['telefoneCelular'] == '' || $array['dataNasc'] == '') {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    //verifica se as senhas são iguais
+    public function CheckRepitaSenha(array $array) {
+        if ($array['senha'] != $array['repitaSenha']) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    //Verifica se existe usuario cadastrado. Cria sessao caso exista
+    public function ExitsFuncionario(array $array) {
+        $funcao = new FuncoesController();
+        $sql = "email='{$array['email']}' and rg='{$array['rg']}';";
+        $dadosUser = $this->read("*", $sql);
+        if (count($dadosUser) > 0) {
+            $_SESSION['ja existe'] = "sim";
+            return TRUE;
+        }
+        return FALSE;
+    }
+}

@@ -1,0 +1,80 @@
+<?php
+namespace App\Model\Home;
+
+use App\Helps\Funcoes;
+use FrameworkWesllen\Date\Session;
+use FrameworkWesllen\Date\Model;
+
+
+class Login extends Model {
+
+    //seleciona a tabela
+    protected $tabela = "users";
+
+    //verifica se os dados enviados pelo cliente estão vazios
+    public function CheckIsNull(array $array) {
+        if ($array['email'] == '' || $array['senha'] == '') {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    //Verifica se existe salt Igual ao banco de dados
+    public function VerificationSal(array $array) {
+        $funcao = new Funcoes();
+        $email = addslashes($array['email']);
+        $senha = addslashes($array['senha']);
+        $sql = "email='{$email}' and senha='{$funcao->base64($senha, 2)}';";
+        
+        $dadosUser = $this->read("*", $sql);
+        if (count($dadosUser) > 0) {
+            //acessa o array de salt no banco de dados trazendo seu valor           
+            $salt = $dadosUser[0]['salt'];
+            if (password_verify($array["senha"], $salt)) {
+                //$data = Session::getInstance();               
+                return TRUE;
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
+
+    //Verifica se existe usuario cadastrado. Cria sessao caso exista
+    public function autentication(array $array) {
+        $funcao = new Funcoes();
+        $email = addslashes($array['email']);
+        $senha = addslashes($array['senha']);      
+        $sql = "email='{$email}' and senha='{$funcao->base64($senha, 2)}';";
+       
+        $dadosUser = $this->read("*", $sql);
+        if (count($dadosUser) > 0) {
+            $login = $dadosUser[0];
+            $id = $dadosUser[0];
+            
+            $data = Session::getInstance();
+            $data->authenticado = TRUE;
+            $data->login = $login["nome"];
+            $data->id = $id['idusers'];         
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    public function isAuth(){
+        $data = Session::getInstance();
+        
+        if($data->authenticado){
+           return TRUE; 
+        }
+        return FALSE;
+        
+    }
+    
+    //Faz a destruição da sessao
+    public function logout(){
+        $data = Session::getInstance();
+        $data->destroy();
+    }
+    
+}
+

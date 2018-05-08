@@ -1,0 +1,43 @@
+<?php
+namespace App\Helps;
+
+class Funcoes {
+    
+    public function tratarCaracter($valor, $tipo){
+        switch ($tipo){
+            case 1: $rst = utf8_decode($valor); break;
+            case 2: $rst = htmlentities($valor, ENT_QOUTES, "ISO-8859-1"); break;
+        }
+        return $rst;
+    }
+    
+    public function dataAtual($tipo){
+        date_default_timezone_set("America/Sao_Paulo");
+        switch ($tipo){
+            case 1: $rts = date("Y-m-d");                break;
+            case 2: $rts = date("Y-m-d H:i:s");          break;
+            case 3: $rts = date("d-m-Y H:i:s");          break;            
+        }
+        return $rts;
+    }
+    public function formatadata($date, $tipo){
+        date_default_timezone_set("America/Sao_Paulo");
+        switch ($tipo){
+            
+            case 1: $rts = $date->format('Y-m-d');                break;
+        }
+        return $rts;
+    }
+    
+    public function base64($valor, $tipo){
+        switch ($tipo){
+            case 1: $rts = md5($valor);                break;
+            case 2: $rts = base64_encode($valor);      break;
+            case 3: $rts = base64_decode($valor);      break;            
+        }
+        return $rts;
+    }
+    
+}
+
+

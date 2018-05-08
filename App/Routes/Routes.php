@@ -1,0 +1,20 @@
+<?php
+
+//ROTA HOME DOS SITE//
+$route->get("/", "Home@Index");
+$route->get("/index", "Home@Index");
+$route->get("/index/login", "Home@login");
+$route->post("/index/login", "Home@verificaLogin");
+$route->get("/index/cadastro", "Home@cadastroView");
+$route->post("/index/cadastro", "Home@cadastra");
+
+//ROTA HOME DOS SITE//
+//
+//ROTA DE ADMINISTRADOR//
+$route->get("/admin", "Admin@Index");
+$route->get("/admin/produtos", "Admin@produto");
+$route->get("/admin/produtos/adicionar", "Admin@adicionarView");
+$route->post("/admin/produtos/adicionar", "Admin@adicionar");
+$route->get("/admin/profile", "Admin@profile");
+$route->get("/admin/sair", "Admin@sair");
+//ROTA DE ADMINISTRADOR//

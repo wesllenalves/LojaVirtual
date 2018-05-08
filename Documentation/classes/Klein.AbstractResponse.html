@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>app</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">app</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                        <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                        <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                        <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">648</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-787264960"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-787264960" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1337728795"></a>
+                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-1337728795" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1697135935"></a>
+                                <a href="../namespaces/App.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-1697135935" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2065878289"></a>
+                                <a href="../namespaces/App.Controllers.BaseControllers.html" style="margin-left: 30px; padding-left: 0">BaseControllers</a>
+            </div>
+            <div id="namespace-2065878289" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseAdminController.html">baseAdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseHomeController.html">baseHomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.AdminController.html">AdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.HomeController.html">HomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1300625419"></a>
+                                <a href="../namespaces/App.Helps.html" style="margin-left: 30px; padding-left: 0">Helps</a>
+            </div>
+            <div id="namespace-1300625419" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Helps.Funcoes.html">Funcoes</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2009350591"></a>
+                                <a href="../namespaces/App.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-2009350591" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2040553886"></a>
+                                <a href="../namespaces/App.Model.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
+            </div>
+            <div id="namespace-2040553886" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Admin.InsertProdutos.html">InsertProdutos</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaFuncionario.html">TabelaFuncionario</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1960956400"></a>
+                                <a href="../namespaces/App.Model.Home.html" style="margin-left: 30px; padding-left: 0">Home</a>
+            </div>
+            <div id="namespace-1960956400" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Home.CadastroUser.html">CadastroUser</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.Login.html">Login</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1282700070"></a>
+                                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-1282700070" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Models.CreateFuncionario.html">CreateFuncionario</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-207922122"></a>
+                                <a href="../namespaces/Composer.html" style="margin-left: 30px; padding-left: 0">Composer</a>
+            </div>
+            <div id="namespace-207922122" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1673059366"></a>
+                                <a href="../namespaces/Composer.Autoload.html" style="margin-left: 30px; padding-left: 0">Autoload</a>
+            </div>
+            <div id="namespace-1673059366" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Composer.Autoload.ClassLoader.html">ClassLoader</a></li>
+                                                    <li class="class"><a href="../classes/Composer.Autoload.ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1800684257"></a>
+                                <a href="../namespaces/FrameworkWesllen.html" style="margin-left: 30px; padding-left: 0">FrameworkWesllen</a>
+            </div>
+            <div id="namespace-1800684257" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2013320598"></a>
+                                <a href="../namespaces/FrameworkWesllen.Date.html" style="margin-left: 30px; padding-left: 0">Date</a>
+            </div>
+            <div id="namespace-2013320598" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.conexao.html">conexao</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Session.html">Session</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-633333886"></a>
+                                <a href="../namespaces/FrameworkWesllen.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-633333886" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-996135252"></a>
+                                <a href="../namespaces/FrameworkWesllen.Routing.html" style="margin-left: 30px; padding-left: 0">Routing</a>
+            </div>
+            <div id="namespace-996135252" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Routing.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.System.html">System</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-299170421"></a>
+                                <a href="../namespaces/Klein.html" style="margin-left: 30px; padding-left: 0">Klein</a>
+            </div>
+            <div id="namespace-299170421" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-476789262"></a>
+                                <a href="../namespaces/Klein.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-476789262" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.DataCollection.DataCollection.html">DataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.HeaderDataCollection.html">HeaderDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ResponseCookieDataCollection.html">ResponseCookieDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.RouteCollection.html">RouteCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ServerDataCollection.html">ServerDataCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2079043608"></a>
+                                <a href="../namespaces/Klein.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-2079043608" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.HttpExceptionInterface.html">HttpExceptionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.KleinExceptionInterface.html">KleinExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Klein.Exceptions.DispatchHaltedException.html">DispatchHaltedException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.DuplicateServiceException.html">DuplicateServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.HttpException.html">HttpException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.LockedResponseException.html">LockedResponseException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RegularExpressionCompilationException.html">RegularExpressionCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ResponseAlreadySentException.html">ResponseAlreadySentException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RoutePathCompilationException.html">RoutePathCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnhandledException.html">UnhandledException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnknownServiceException.html">UnknownServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ValidationException.html">ValidationException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2028995105"></a>
+                                <a href="../namespaces/Klein.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-2028995105" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-73554724"></a>
+                                <a href="../namespaces/Klein.Tests.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-73554724" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.DataCollectionTest.html">DataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.HeaderDataCollectionTest.html">HeaderDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ResponseCookieDataCollectionTest.html">ResponseCookieDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.RouteCollectionTest.html">RouteCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ServerDataCollectionTest.html">ServerDataCollectionTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-247173831"></a>
+                                <a href="../namespaces/Klein.Tests.Mocks.html" style="margin-left: 30px; padding-left: 0">Mocks</a>
+            </div>
+            <div id="namespace-247173831" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.MockRequestFactory.html">MockRequestFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.TestClass.html">TestClass</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractKleinTest.html">AbstractKleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractRouteFactoryTest.html">AbstractRouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AppTest.html">AppTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.HttpStatusTests.html">HttpStatusTests</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.KleinTest.html">KleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RequestTest.html">RequestTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponseCookieTest.html">ResponseCookieTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponsesTest.html">ResponsesTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteFactoryTest.html">RouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteTest.html">RouteTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RoutingTest.html">RoutingTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ServiceProviderTest.html">ServiceProviderTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ValidationsTest.html">ValidationsTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Klein.AbstractRouteFactory.html">AbstractRouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.App.html">App</a></li>
+                                                    <li class="class"><a href="../classes/Klein.HttpStatus.html">HttpStatus</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Klein.html">Klein</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ResponseCookie.html">ResponseCookie</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Route.html">Route</a></li>
+                                                    <li class="class"><a href="../classes/Klein.RouteFactory.html">RouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ServiceProvider.html">ServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                                    <li class="class"><a href="../classes/crud.html">crud</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Klein.html">\Klein</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Klein</small>AbstractResponse</h1>
+                    <p><em>AbstractResponse</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_protocolVersion" class="">protocolVersion()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_body" class="">body()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_status" class="">status()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_headers" class="">headers()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_cookies" class="">cookies()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_code" class="">code()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_prepend" class="">prepend()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_append" class="">append()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_isLocked" class="">isLocked()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_requireUnlocked" class="">requireUnlocked()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_lock" class="">lock()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_unlock" class="">unlock()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_sendHeaders" class="">sendHeaders()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_sendCookies" class="">sendCookies()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_sendBody" class="">sendBody()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_send" class="">send()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_isSent" class="">isSent()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_chunk" class="">chunk()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_header" class="">header()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_cookie" class="">cookie()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_noCache" class="">noCache()</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_redirect" class="">redirect()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_chunked" class="">$chunked</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.AbstractResponse.html#method_httpStatusLine" class="">httpStatusLine()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_default_status_code" class="">$default_status_code</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_protocol_version" class="">$protocol_version</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_body" class="">$body</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_status" class="">$status</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_headers" class="">$headers</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_cookies" class="">$cookies</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_locked" class="">$locked</a><br />
+                                                                    <a href="../classes/Klein.AbstractResponse.html#property_sent" class="">$sent</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                            <span class="label label-info">abstract</span>
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/vendor.klein.klein.src.Klein.AbstractResponse.html"><div class="path-wrapper">vendor\klein\klein\src\Klein\AbstractResponse.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Klein\AbstractResponse</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_chunked" name="property_chunked" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$chunked</h3>
+                <pre class="signature">$chunked : </pre>
+                <p><em>Whether the response has been chunked or not</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>boolean</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_default_status_code" name="property_default_status_code" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$default_status_code</h3>
+                <pre class="signature">$default_status_code : </pre>
+                <p><em>The default response HTTP status code</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_protocol_version" name="property_protocol_version" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$protocol_version</h3>
+                <pre class="signature">$protocol_version : </pre>
+                <p><em>The HTTP version of the response</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>string</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_body" name="property_body" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$body</h3>
+                <pre class="signature">$body : </pre>
+                <p><em>The response body</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>string</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_status" name="property_status" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$status</h3>
+                <pre class="signature">$status : </pre>
+                <p><em>HTTP response status</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>HttpStatus</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_headers" name="property_headers" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$headers</h3>
+                <pre class="signature">$headers : </pre>
+                <p><em>HTTP response headers</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>HeaderDataCollection</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cookies" name="property_cookies" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$cookies</h3>
+                <pre class="signature">$cookies : </pre>
+                <p><em>HTTP response cookies</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>ResponseCookieDataCollection</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_locked" name="property_locked" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$locked</h3>
+                <pre class="signature">$locked : </pre>
+                <p><em>Whether or not the response is &quot;locked&quot; from
+any further modification</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>boolean</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sent" name="property_sent" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$sent</h3>
+                <pre class="signature">$sent : </pre>
+                <p><em>Whether or not the response has been sent</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>boolean</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$body = &#039;&#039;</span>, integer  <span class="argument">$status_code = null</span>, array  <span class="argument">$headers = array()</span>) </pre>
+                <p><em>Constructor</em></p>
+                <p>Create a new AbstractResponse object with a dependency injected Headers instance</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$body </td>
+                                <td><p>The response body's content</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$status_code </td>
+                                <td><p>The status code</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td><p>The response header &quot;hash&quot;</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_protocolVersion" name="method_protocolVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">protocolVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">protocolVersion(string  <span class="argument">$protocol_version = null</span>) : string|\Klein\AbstractResponse</pre>
+                <p><em>Get (or set) the HTTP protocol version</em></p>
+                <p>Simply calling this method without any arguments returns the current protocol version.
+Calling with an integer argument, however, attempts to set the protocol version to what
+was provided by the argument.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$protocol_version </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|<a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_body" name="method_body" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">body()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">body(string  <span class="argument">$body = null</span>) : string|\Klein\AbstractResponse</pre>
+                <p><em>Get (or set) the response&#039;s body content</em></p>
+                <p>Simply calling this method without any arguments returns the current response body.
+Calling with an argument, however, sets the response body to what was provided by the argument.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$body </td>
+                                <td><p>The body content string</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|<a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_status" name="method_status" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">status()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">status() : \Klein\HttpStatus</pre>
+                <p><em>Returns the status object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.HttpStatus.html">\Klein\HttpStatus</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_headers" name="method_headers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">headers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">headers() : \Klein\DataCollection\HeaderDataCollection</pre>
+                <p><em>Returns the headers collection</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html">\Klein\DataCollection\HeaderDataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cookies" name="method_cookies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cookies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">cookies() : \Klein\DataCollection\ResponseCookieDataCollection</pre>
+                <p><em>Returns the cookies collection</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.ResponseCookieDataCollection.html">\Klein\DataCollection\ResponseCookieDataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_code" name="method_code" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">code()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">code(integer  <span class="argument">$code = null</span>) : integer|\Klein\AbstractResponse</pre>
+                <p><em>Get (or set) the HTTP response code</em></p>
+                <p>Simply calling this method without any arguments returns the current response code.
+Calling with an integer argument, however, attempts to set the response code to what
+was provided by the argument.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$code </td>
+                                <td><p>The HTTP status code to send</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer|<a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepend" name="method_prepend" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prepend()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepend(string  <span class="argument">$content</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Prepend a string to the response&#039;s content body</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$content </td>
+                                <td><p>The string to prepend</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_append" name="method_append" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">append()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">append(string  <span class="argument">$content</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Append a string to the response&#039;s content body</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$content </td>
+                                <td><p>The string to append</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isLocked" name="method_isLocked" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isLocked()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isLocked() : boolean</pre>
+                <p><em>Check if the response is locked</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_requireUnlocked" name="method_requireUnlocked" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">requireUnlocked()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">requireUnlocked() : \Klein\AbstractResponse</pre>
+                <p><em>Require that the response is unlocked</em></p>
+                <p>Throws an exception if the response is locked,
+preventing any methods from mutating the response
+when its locked</p>
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\LockedResponseException</dt>
+                            <dd><p>If the response is locked</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lock" name="method_lock" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">lock()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lock() : \Klein\AbstractResponse</pre>
+                <p><em>Lock the response from further modification</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unlock" name="method_unlock" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unlock()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">unlock() : \Klein\AbstractResponse</pre>
+                <p><em>Unlock the response from further modification</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendHeaders" name="method_sendHeaders" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sendHeaders()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendHeaders(boolean  <span class="argument">$cookies_also = true</span>, boolean  <span class="argument">$override = false</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Send our HTTP headers</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$cookies_also </td>
+                                <td><p>Whether or not to also send the cookies after sending the normal headers</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$override </td>
+                                <td><p>Whether or not to override the check if headers have already been sent</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendCookies" name="method_sendCookies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sendCookies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendCookies(boolean  <span class="argument">$override = false</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Send our HTTP response cookies</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$override </td>
+                                <td><p>Whether or not to override the check if headers have already been sent</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendBody" name="method_sendBody" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sendBody()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendBody() : \Klein\AbstractResponse</pre>
+                <p><em>Send our body&#039;s contents</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_send" name="method_send" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">send()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">send(boolean  <span class="argument">$override = false</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Send the response and lock it</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$override </td>
+                                <td><p>Whether or not to override the check if the response has already been sent</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\ResponseAlreadySentException</dt>
+                            <dd><p>If the response has already been sent</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isSent" name="method_isSent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isSent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isSent() : boolean</pre>
+                <p><em>Check if the response has been sent</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_chunk" name="method_chunk" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">chunk()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">chunk() : \Klein\AbstractResponse</pre>
+                <p><em>Enable response chunking</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://github.com/klein/klein.php/wiki/Response-Chunking"><span class="namespace-wrapper">https://github.com/klein/klein.php/wiki/Response-Chunking</span></a></dd>
+                                            <dd><a href="http://bit.ly/hg3gHb"><span class="namespace-wrapper">http://bit.ly/hg3gHb</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_header" name="method_header" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">header()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">header(string  <span class="argument">$key</span>, mixed  <span class="argument">$value</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Sets a response header</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the HTTP response header</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to set the header with</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cookie" name="method_cookie" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cookie()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">cookie(string  <span class="argument">$key</span>, string  <span class="argument">$value = &#039;&#039;</span>, integer  <span class="argument">$expiry = null</span>, string  <span class="argument">$path = &#039;/&#039;</span>, string  <span class="argument">$domain = null</span>, boolean  <span class="argument">$secure = false</span>, boolean  <span class="argument">$httponly = false</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Sets a response cookie</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the cookie</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td><p>The value to set the cookie with</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$expiry </td>
+                                <td><p>The time that the cookie should expire</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>The path of which to restrict the cookie</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$domain </td>
+                                <td><p>The domain of which to restrict the cookie</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$secure </td>
+                                <td><p>Flag of whether the cookie should only be sent over a HTTPS connection</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$httponly </td>
+                                <td><p>Flag of whether the cookie should only be accessible over the HTTP protocol</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_noCache" name="method_noCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">noCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">noCache() : \Klein\AbstractResponse</pre>
+                <p><em>Tell the browser not to cache the response</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_redirect" name="method_redirect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">redirect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">redirect(string  <span class="argument">$url</span>, integer  <span class="argument">$code = 302</span>) : \Klein\AbstractResponse</pre>
+                <p><em>Redirects the request to another URL</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>The URL to redirect to</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$code </td>
+                                <td><p>The HTTP status code to use for redirection</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_httpStatusLine" name="method_httpStatusLine" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">httpStatusLine()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">httpStatusLine() : string</pre>
+                <p><em>Generates an HTTP compatible status header line string</em></p>
+                <p>Creates the string based off of the response's properties</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AbstractResponse.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/vendor\klein\klein\src\Klein\AbstractResponse.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                            <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                                            <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                                            <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 5th, 2018 at 15:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

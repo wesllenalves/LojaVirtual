@@ -1,0 +1,53 @@
+<?php
+namespace App\Model\Home;
+use FrameworkWesllen\Date\Model;
+
+class CadastroUser extends Model {
+
+    //seleciona a tabela
+    protected $tabela = "users";
+    
+    protected $tabela1 = "endereco";
+    protected $tabela2 = "cliente";
+    protected $chaveEstrangeira = "FKEndereco";
+
+    //verifica se os dados enviados pelo cliente estão vazios
+    public function CheckIsNull(array $array) {
+        if ($array['nome'] == '' || $array['email'] == '' || $array['senha'] == '' || $array['ReSenha'] == '' || 
+            $array['cpf'] == '' || $array['dataNasc'] == '' || $array['celular'] == '' || $array['cep'] == '' || $array['rua'] == '' || $array['bairro'] == '' || $array['cidade'] == '' || $array['uf'] == ''
+                ) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    //verifica se o cpf digitado e valido
+    public function CheckCpf(array $array) {
+        $cpf = strlen($array['cpf']);
+
+        if ($cpf >= 12 || $cpf < 11) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    //verifica se as senhas são iguais
+    public function CheckRepitaSenha(array $array) {
+        if ($array['senha'] != $array['ReSenha']) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    //Verifica se ja existe usuarios com os dados de email e cpf cadastrados
+    public function ExitsUser(array $array) {
+        $sql = "email='{$array['email']}' and cpf='{$array['cpf']}';";
+        $dadosUser = $this->read("*", $sql);
+        if (count($dadosUser) > 0) {
+
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+}

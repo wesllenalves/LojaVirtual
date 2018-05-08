@@ -1,0 +1,14 @@
+{
+    "name": "Wesllen",
+    "require": {"php": ">=5.3",
+        "klein/klein": "^2.1"},
+    "autoload": {
+        "psr-4":{
+            "FrameworkWesllen\\": "vendor/frameworkWesllen/",
+            "App\\": "app/"
+        }
+    
+    }
+    
+    
+}

@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>app</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">app</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                        <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                        <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                        <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">648</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1327880477"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1327880477" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1366612056"></a>
+                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-1366612056" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-721684003"></a>
+                                <a href="../namespaces/App.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-721684003" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-682361627"></a>
+                                <a href="../namespaces/App.Controllers.BaseControllers.html" style="margin-left: 30px; padding-left: 0">BaseControllers</a>
+            </div>
+            <div id="namespace-682361627" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseAdminController.html">baseAdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseHomeController.html">baseHomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.AdminController.html">AdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.HomeController.html">HomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-613446064"></a>
+                                <a href="../namespaces/App.Helps.html" style="margin-left: 30px; padding-left: 0">Helps</a>
+            </div>
+            <div id="namespace-613446064" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Helps.Funcoes.html">Funcoes</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1795664618"></a>
+                                <a href="../namespaces/App.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1795664618" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1052093039"></a>
+                                <a href="../namespaces/App.Model.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
+            </div>
+            <div id="namespace-1052093039" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Admin.InsertProdutos.html">InsertProdutos</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaFuncionario.html">TabelaFuncionario</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-187664202"></a>
+                                <a href="../namespaces/App.Model.Home.html" style="margin-left: 30px; padding-left: 0">Home</a>
+            </div>
+            <div id="namespace-187664202" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Home.CadastroUser.html">CadastroUser</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.Login.html">Login</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1685319952"></a>
+                                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-1685319952" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Models.CreateFuncionario.html">CreateFuncionario</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-536718559"></a>
+                                <a href="../namespaces/Composer.html" style="margin-left: 30px; padding-left: 0">Composer</a>
+            </div>
+            <div id="namespace-536718559" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1567755860"></a>
+                                <a href="../namespaces/Composer.Autoload.html" style="margin-left: 30px; padding-left: 0">Autoload</a>
+            </div>
+            <div id="namespace-1567755860" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Composer.Autoload.ClassLoader.html">ClassLoader</a></li>
+                                                    <li class="class"><a href="../classes/Composer.Autoload.ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1205037510"></a>
+                                <a href="../namespaces/FrameworkWesllen.html" style="margin-left: 30px; padding-left: 0">FrameworkWesllen</a>
+            </div>
+            <div id="namespace-1205037510" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2021164765"></a>
+                                <a href="../namespaces/FrameworkWesllen.Date.html" style="margin-left: 30px; padding-left: 0">Date</a>
+            </div>
+            <div id="namespace-2021164765" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.conexao.html">conexao</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Session.html">Session</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1004495657"></a>
+                                <a href="../namespaces/FrameworkWesllen.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-1004495657" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1286996372"></a>
+                                <a href="../namespaces/FrameworkWesllen.Routing.html" style="margin-left: 30px; padding-left: 0">Routing</a>
+            </div>
+            <div id="namespace-1286996372" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Routing.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.System.html">System</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-288470126"></a>
+                                <a href="../namespaces/Klein.html" style="margin-left: 30px; padding-left: 0">Klein</a>
+            </div>
+            <div id="namespace-288470126" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-362767877"></a>
+                                <a href="../namespaces/Klein.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-362767877" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.DataCollection.DataCollection.html">DataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.HeaderDataCollection.html">HeaderDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ResponseCookieDataCollection.html">ResponseCookieDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.RouteCollection.html">RouteCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ServerDataCollection.html">ServerDataCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-957719832"></a>
+                                <a href="../namespaces/Klein.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-957719832" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.HttpExceptionInterface.html">HttpExceptionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.KleinExceptionInterface.html">KleinExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Klein.Exceptions.DispatchHaltedException.html">DispatchHaltedException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.DuplicateServiceException.html">DuplicateServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.HttpException.html">HttpException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.LockedResponseException.html">LockedResponseException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RegularExpressionCompilationException.html">RegularExpressionCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ResponseAlreadySentException.html">ResponseAlreadySentException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RoutePathCompilationException.html">RoutePathCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnhandledException.html">UnhandledException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnknownServiceException.html">UnknownServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ValidationException.html">ValidationException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1539447921"></a>
+                                <a href="../namespaces/Klein.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-1539447921" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-698550843"></a>
+                                <a href="../namespaces/Klein.Tests.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-698550843" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.DataCollectionTest.html">DataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.HeaderDataCollectionTest.html">HeaderDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ResponseCookieDataCollectionTest.html">ResponseCookieDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.RouteCollectionTest.html">RouteCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ServerDataCollectionTest.html">ServerDataCollectionTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-860696887"></a>
+                                <a href="../namespaces/Klein.Tests.Mocks.html" style="margin-left: 30px; padding-left: 0">Mocks</a>
+            </div>
+            <div id="namespace-860696887" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.MockRequestFactory.html">MockRequestFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.TestClass.html">TestClass</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractKleinTest.html">AbstractKleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractRouteFactoryTest.html">AbstractRouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AppTest.html">AppTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.HttpStatusTests.html">HttpStatusTests</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.KleinTest.html">KleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RequestTest.html">RequestTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponseCookieTest.html">ResponseCookieTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponsesTest.html">ResponsesTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteFactoryTest.html">RouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteTest.html">RouteTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RoutingTest.html">RoutingTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ServiceProviderTest.html">ServiceProviderTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ValidationsTest.html">ValidationsTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Klein.AbstractRouteFactory.html">AbstractRouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.App.html">App</a></li>
+                                                    <li class="class"><a href="../classes/Klein.HttpStatus.html">HttpStatus</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Klein.html">Klein</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ResponseCookie.html">ResponseCookie</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Route.html">Route</a></li>
+                                                    <li class="class"><a href="../classes/Klein.RouteFactory.html">RouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ServiceProvider.html">ServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                                    <li class="class"><a href="../classes/crud.html">crud</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Klein.DataCollection.html">\Klein\DataCollection</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Klein\DataCollection</small>HeaderDataCollection</h1>
+                    <p><em>HeaderDataCollection</em></p>
+                    <p>A DataCollection for HTTP headers</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_keys" class="">keys()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_all" class="">all()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_set" class="">set()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_replace" class="">replace()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_merge" class="">merge()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_exists" class="">exists()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_remove" class="">remove()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_clear" class="">clear()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_isEmpty" class="">isEmpty()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_cloneEmpty" class="">cloneEmpty()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method___set" class="">__set()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method___isset" class="">__isset()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method___unset" class="">__unset()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_getIterator" class="">getIterator()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_offsetGet" class="">offsetGet()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_offsetSet" class="">offsetSet()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_offsetExists" class="">offsetExists()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_offsetUnset" class="">offsetUnset()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#method_count" class="">count()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_getNormalization" class="">getNormalization()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_setNormalization" class="">setNormalization()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_normalizeKeyDelimiters" class="">normalizeKeyDelimiters()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_canonicalizeKey" class="">canonicalizeKey()</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_normalizeName" class="deprecated">normalizeName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_NONE" class="">NORMALIZE_NONE</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_TRIM" class="">NORMALIZE_TRIM</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_DELIMITERS" class="">NORMALIZE_DELIMITERS</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_CASE" class="">NORMALIZE_CASE</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_CANONICAL" class="">NORMALIZE_CANONICAL</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#constant_NORMALIZE_ALL" class="">NORMALIZE_ALL</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#method_normalizeKey" class="">normalizeKey()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.DataCollection.DataCollection.html#property_attributes" class="">$attributes</a><br />
+                                                                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html#property_normalization" class="">$normalization</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/vendor.klein.klein.src.Klein.DataCollection.HeaderDataCollection.html"><div class="path-wrapper">vendor\klein\klein\src\Klein\DataCollection\HeaderDataCollection.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Klein.DataCollection.DataCollection.html">\Klein\DataCollection\DataCollection</a></div>
+                                                                                                    <div class="namespace-wrapper">\Klein\DataCollection\HeaderDataCollection</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_NONE" name="constant_NORMALIZE_NONE" class="anchor"></a>
+            <article id="constant_NORMALIZE_NONE" class="constant">
+                <h3 class="">NORMALIZE_NONE</h3>
+                <pre class="signature">NORMALIZE_NONE</pre>
+                <p><em>Normalization option</em></p>
+                <p>Don't normalize</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_TRIM" name="constant_NORMALIZE_TRIM" class="anchor"></a>
+            <article id="constant_NORMALIZE_TRIM" class="constant">
+                <h3 class="">NORMALIZE_TRIM</h3>
+                <pre class="signature">NORMALIZE_TRIM</pre>
+                <p><em>Normalization option</em></p>
+                <p>Normalize the outer whitespace of the header</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_DELIMITERS" name="constant_NORMALIZE_DELIMITERS" class="anchor"></a>
+            <article id="constant_NORMALIZE_DELIMITERS" class="constant">
+                <h3 class="">NORMALIZE_DELIMITERS</h3>
+                <pre class="signature">NORMALIZE_DELIMITERS</pre>
+                <p><em>Normalization option</em></p>
+                <p>Normalize the delimiters of the header</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_CASE" name="constant_NORMALIZE_CASE" class="anchor"></a>
+            <article id="constant_NORMALIZE_CASE" class="constant">
+                <h3 class="">NORMALIZE_CASE</h3>
+                <pre class="signature">NORMALIZE_CASE</pre>
+                <p><em>Normalization option</em></p>
+                <p>Normalize the case of the header</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_CANONICAL" name="constant_NORMALIZE_CANONICAL" class="anchor"></a>
+            <article id="constant_NORMALIZE_CANONICAL" class="constant">
+                <h3 class="">NORMALIZE_CANONICAL</h3>
+                <pre class="signature">NORMALIZE_CANONICAL</pre>
+                <p><em>Normalization option</em></p>
+                <p>Normalize the header into canonical format</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NORMALIZE_ALL" name="constant_NORMALIZE_ALL" class="anchor"></a>
+            <article id="constant_NORMALIZE_ALL" class="constant">
+                <h3 class="">NORMALIZE_ALL</h3>
+                <pre class="signature">NORMALIZE_ALL</pre>
+                <p><em>Normalization option</em></p>
+                <p>Normalize using all normalization techniques</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_attributes" name="property_attributes" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$attributes</h3>
+                <pre class="signature">$attributes : </pre>
+                <p><em>Collection of data attributes</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>array</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_normalization" name="property_normalization" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$normalization</h3>
+                <pre class="signature">$normalization : </pre>
+                <p><em>The header key normalization technique/style to
+use when accessing headers in the collection</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$headers = array()</span>, integer  <span class="argument">$normalization = self::NORMALIZE_ALL</span>) </pre>
+                <p><em>Constructor</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$headers </td>
+                                <td><p>The headers of this collection</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$normalization </td>
+                                <td><p>The header key normalization technique/style to use</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            override
+                        </th>
+                        <td>
+                                                                                            <p>(doesn't call our parent)</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_keys" name="method_keys" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">keys()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">keys(array  <span class="argument">$mask = null</span>, boolean  <span class="argument">$fill_with_nulls = true</span>) : array</pre>
+                <p><em>Returns all of the key names in the collection</em></p>
+                <p>If an optional mask array is passed, this only
+returns the keys that match the mask</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$mask </td>
+                                <td><p>The parameter mask array</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$fill_with_nulls </td>
+                                <td><p>Whether or not to fill the returned array with
+values to match the given mask, even if they don't exist in the collection</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_all" name="method_all" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">all()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">all(array  <span class="argument">$mask = null</span>, boolean  <span class="argument">$fill_with_nulls = true</span>) : array</pre>
+                <p><em>Returns all of the attributes in the collection</em></p>
+                <p>If an optional mask array is passed, this only
+returns the keys that match the mask</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$mask </td>
+                                <td><p>The parameter mask array</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$fill_with_nulls </td>
+                                <td><p>Whether or not to fill the returned array with
+values to match the given mask, even if they don't exist in the collection</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get" name="method_get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get(string  <span class="argument">$key</span>, mixed  <span class="argument">$default_val = null</span>) : mixed</pre>
+                <p><em>Get a header</em></p>
+                <p>Return a default value if the key doesn't exist</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The key of the header to return</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$default_val </td>
+                                <td><p>The default value of the header if it contains no value</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_get"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::get()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_set" name="method_set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">set(string  <span class="argument">$key</span>, mixed  <span class="argument">$value</span>) : \Klein\DataCollection\HeaderDataCollection</pre>
+                <p><em>Set a header</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The key of the header to set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value of the header to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html">\Klein\DataCollection\HeaderDataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_set"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::set()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_replace" name="method_replace" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">replace()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">replace(array  <span class="argument">$attributes = array()</span>) : \Klein\DataCollection\DataCollection</pre>
+                <p><em>Replace the collection&#039;s attributes</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$attributes </td>
+                                <td><p>The attributes to replace the collection's with</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.DataCollection.html">\Klein\DataCollection\DataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_merge" name="method_merge" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">merge()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">merge(array  <span class="argument">$attributes = array()</span>, boolean  <span class="argument">$hard = false</span>) : \Klein\DataCollection\DataCollection</pre>
+                <p><em>Merge attributes with the collection&#039;s attributes</em></p>
+                <p>Optionally allows a second boolean parameter to merge the attributes
+into the collection in a &quot;hard&quot; manner, using the &quot;array_replace&quot;
+method instead of the usual &quot;array_merge&quot; method</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$attributes </td>
+                                <td><p>The attributes to merge into the collection</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$hard </td>
+                                <td><p>Whether or not to make the merge &quot;hard&quot;</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.DataCollection.html">\Klein\DataCollection\DataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_exists" name="method_exists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">exists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">exists(string  <span class="argument">$key</span>) : boolean</pre>
+                <p><em>Check if a header exists</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The key of the header</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_exists"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::exists()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_remove" name="method_remove" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">remove()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">remove(string  <span class="argument">$key</span>) : void</pre>
+                <p><em>Remove a header</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The key of the header</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_remove"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::remove()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_clear" name="method_clear" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">clear()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">clear() : \Klein\DataCollection\DataCollection</pre>
+                <p><em>Clear the collection&#039;s contents</em></p>
+                <p>Semantic alias of a no-argument <code>$this-&gt;replace</code> call</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.DataCollection.html">\Klein\DataCollection\DataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEmpty" name="method_isEmpty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEmpty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isEmpty() : boolean</pre>
+                <p><em>Check if the collection is empty</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cloneEmpty" name="method_cloneEmpty" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cloneEmpty()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">cloneEmpty() : \Klein\DataCollection\DataCollection</pre>
+                <p><em>A quick convenience method to get an empty clone of the
+collection. Great for dependency injection. :)</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.DataCollection.html">\Klein\DataCollection\DataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string  <span class="argument">$key</span>) : mixed</pre>
+                <p><em>Magic &quot;__get&quot; method</em></p>
+                <p>Allows the ability to arbitrarily request an attribute from
+this instance while treating it as an instance property</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter to return</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_get"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::get()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(string  <span class="argument">$key</span>, mixed  <span class="argument">$value</span>) : void</pre>
+                <p><em>Magic &quot;__set&quot; method</em></p>
+                <p>Allows the ability to arbitrarily set an attribute from
+this instance while treating it as an instance property</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter to set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value of the parameter to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_set"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::set()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___isset" name="method___isset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__isset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__isset(string  <span class="argument">$key</span>) : boolean</pre>
+                <p><em>Magic &quot;__isset&quot; method</em></p>
+                <p>Allows the ability to arbitrarily check the existence of an attribute
+from this instance while treating it as an instance property</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_exists"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::exists()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___unset" name="method___unset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__unset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__unset(string  <span class="argument">$key</span>) : void</pre>
+                <p><em>Magic &quot;__unset&quot; method</em></p>
+                <p>Allows the ability to arbitrarily remove an attribute from
+this instance while treating it as an instance property</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_remove"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::remove()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIterator" name="method_getIterator" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getIterator()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIterator() : \ArrayIterator</pre>
+                <p><em>Get the aggregate iterator</em></p>
+                <p>IteratorAggregate interface required method</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    \ArrayIterator
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\IteratorAggregate::getIterator()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offsetGet" name="method_offsetGet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">offsetGet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offsetGet(string  <span class="argument">$key</span>) : mixed</pre>
+                <p><em>Get an attribute via array syntax</em></p>
+                <p>Allows the access of attributes of this instance while treating it like an array</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter to return</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\ArrayAccess::offsetGet()</span></a></dd>
+                                            <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_get"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::get()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offsetSet" name="method_offsetSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">offsetSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offsetSet(string  <span class="argument">$key</span>, mixed  <span class="argument">$value</span>) : void</pre>
+                <p><em>Set an attribute via array syntax</em></p>
+                <p>Allows the access of attributes of this instance while treating it like an array</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter to set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value of the parameter to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\ArrayAccess::offsetSet()</span></a></dd>
+                                            <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_set"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::set()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offsetExists" name="method_offsetExists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">offsetExists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offsetExists(string  <span class="argument">$key</span>) : boolean</pre>
+                <p><em>Check existence an attribute via array syntax</em></p>
+                <p>Allows the access of attributes of this instance while treating it like an array</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\ArrayAccess::offsetExists()</span></a></dd>
+                                            <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_exists"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::exists()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_offsetUnset" name="method_offsetUnset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">offsetUnset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">offsetUnset(string  <span class="argument">$key</span>) : void</pre>
+                <p><em>Remove an attribute via array syntax</em></p>
+                <p>Allows the access of attributes of this instance while treating it like an array</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The name of the parameter</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\ArrayAccess::offsetUnset()</span></a></dd>
+                                            <dd><a href="../classes/Klein.DataCollection.DataCollection.html#method_remove"><span class="namespace-wrapper">\Klein\DataCollection\DataCollection::remove()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_count" name="method_count" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">count()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">count() : integer</pre>
+                <p><em>Count the attributes via a simple &quot;count&quot; call</em></p>
+                <p>Allows the use of the &quot;count&quot; function (or any internal counters)
+to simply count the number of attributes in the collection.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.DataCollection.DataCollection.html"><div class="path-wrapper">\Klein\DataCollection\DataCollection</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\Countable::count()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getNormalization" name="method_getNormalization" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getNormalization()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getNormalization() : integer</pre>
+                <p><em>Get the header key normalization technique/style to use</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setNormalization" name="method_setNormalization" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setNormalization()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setNormalization(integer  <span class="argument">$normalization</span>) : \Klein\DataCollection\HeaderDataCollection</pre>
+                <p><em>Set the header key normalization technique/style to use</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$normalization </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.HeaderDataCollection.html">\Klein\DataCollection\HeaderDataCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizeKeyDelimiters" name="method_normalizeKeyDelimiters" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizeKeyDelimiters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">normalizeKeyDelimiters(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>Normalize a header key&#039;s delimiters</em></p>
+                <p>This will convert any space or underscore characters
+to a more standard hyphen (-) character</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The (&quot;field&quot;) key of the header</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_canonicalizeKey" name="method_canonicalizeKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">canonicalizeKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">canonicalizeKey(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>Canonicalize a header key</em></p>
+                <p>The canonical format is all lower case except for
+the first letter of &quot;words&quot; separated by a hyphen</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The (&quot;field&quot;) key of the header</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2"><span class="namespace-wrapper">http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizeName" name="method_normalizeName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">normalizeName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">normalizeName(string  <span class="argument">$name</span>, boolean  <span class="argument">$make_lowercase = true</span>) : string</pre>
+                <p><em>Normalize a header name by formatting it in a standard way</em></p>
+                <p>This is useful since PHP automatically capitalizes and underscore
+separates the words of headers</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>The name (&quot;field&quot;) of the header</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$make_lowercase </td>
+                                <td><p>Whether or not to lowercase the name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use the normalization options and the other normalization methods instead
+                </aside>
+                        <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2"><span class="namespace-wrapper">http://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>Possibly remove in future, here for backwards compatibility</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizeKey" name="method_normalizeKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">normalizeKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">normalizeKey(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>Normalize a header key based on our set normalization style</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The (&quot;field&quot;) key of the header</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">HeaderDataCollection.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/vendor\klein\klein\src\Klein\DataCollection\HeaderDataCollection.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                            <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                                            <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                                            <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 5th, 2018 at 15:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

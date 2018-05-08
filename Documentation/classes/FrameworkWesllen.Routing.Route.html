@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>app</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">app</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/App.html">\App</a></li>
+                                                        <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                        <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                        <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">648</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1516182600"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1516182600" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-377360973"></a>
+                                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-377360973" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1245973019"></a>
+                                <a href="../namespaces/App.Controllers.html" style="margin-left: 30px; padding-left: 0">Controllers</a>
+            </div>
+            <div id="namespace-1245973019" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-436977569"></a>
+                                <a href="../namespaces/App.Controllers.BaseControllers.html" style="margin-left: 30px; padding-left: 0">BaseControllers</a>
+            </div>
+            <div id="namespace-436977569" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseAdminController.html">baseAdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.BaseControllers.baseHomeController.html">baseHomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Controllers.AdminController.html">AdminController</a></li>
+                                                    <li class="class"><a href="../classes/App.Controllers.HomeController.html">HomeController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-703994309"></a>
+                                <a href="../namespaces/App.Helps.html" style="margin-left: 30px; padding-left: 0">Helps</a>
+            </div>
+            <div id="namespace-703994309" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Helps.Funcoes.html">Funcoes</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-633438901"></a>
+                                <a href="../namespaces/App.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-633438901" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1872861243"></a>
+                                <a href="../namespaces/App.Model.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
+            </div>
+            <div id="namespace-1872861243" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Admin.InsertProdutos.html">InsertProdutos</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaFuncionario.html">TabelaFuncionario</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Admin.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2146375424"></a>
+                                <a href="../namespaces/App.Model.Home.html" style="margin-left: 30px; padding-left: 0">Home</a>
+            </div>
+            <div id="namespace-2146375424" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Model.Home.CadastroUser.html">CadastroUser</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.Login.html">Login</a></li>
+                                                    <li class="class"><a href="../classes/App.Model.Home.TabelaProdutos.html">TabelaProdutos</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-168682315"></a>
+                                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-168682315" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/App.Models.CreateFuncionario.html">CreateFuncionario</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-699793895"></a>
+                                <a href="../namespaces/Composer.html" style="margin-left: 30px; padding-left: 0">Composer</a>
+            </div>
+            <div id="namespace-699793895" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-489343910"></a>
+                                <a href="../namespaces/Composer.Autoload.html" style="margin-left: 30px; padding-left: 0">Autoload</a>
+            </div>
+            <div id="namespace-489343910" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Composer.Autoload.ClassLoader.html">ClassLoader</a></li>
+                                                    <li class="class"><a href="../classes/Composer.Autoload.ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-522326449"></a>
+                                <a href="../namespaces/FrameworkWesllen.html" style="margin-left: 30px; padding-left: 0">FrameworkWesllen</a>
+            </div>
+            <div id="namespace-522326449" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-852081608"></a>
+                                <a href="../namespaces/FrameworkWesllen.Date.html" style="margin-left: 30px; padding-left: 0">Date</a>
+            </div>
+            <div id="namespace-852081608" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.conexao.html">conexao</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Date.Session.html">Session</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1261705411"></a>
+                                <a href="../namespaces/FrameworkWesllen.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-1261705411" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.Controller.html">Controller</a></li>
+                                                    <li class="class"><a href="../classes/FrameworkWesllen.Http.View.html">View</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-23926599"></a>
+                                <a href="../namespaces/FrameworkWesllen.Routing.html" style="margin-left: 30px; padding-left: 0">Routing</a>
+            </div>
+            <div id="namespace-23926599" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.Routing.Route.html">Route</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FrameworkWesllen.System.html">System</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-749137827"></a>
+                                <a href="../namespaces/Klein.html" style="margin-left: 30px; padding-left: 0">Klein</a>
+            </div>
+            <div id="namespace-749137827" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-298882881"></a>
+                                <a href="../namespaces/Klein.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-298882881" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.DataCollection.DataCollection.html">DataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.HeaderDataCollection.html">HeaderDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ResponseCookieDataCollection.html">ResponseCookieDataCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.RouteCollection.html">RouteCollection</a></li>
+                                                    <li class="class"><a href="../classes/Klein.DataCollection.ServerDataCollection.html">ServerDataCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-320240642"></a>
+                                <a href="../namespaces/Klein.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-320240642" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.HttpExceptionInterface.html">HttpExceptionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Klein.Exceptions.KleinExceptionInterface.html">KleinExceptionInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Klein.Exceptions.DispatchHaltedException.html">DispatchHaltedException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.DuplicateServiceException.html">DuplicateServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.HttpException.html">HttpException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.LockedResponseException.html">LockedResponseException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RegularExpressionCompilationException.html">RegularExpressionCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ResponseAlreadySentException.html">ResponseAlreadySentException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.RoutePathCompilationException.html">RoutePathCompilationException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnhandledException.html">UnhandledException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.UnknownServiceException.html">UnknownServiceException</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Exceptions.ValidationException.html">ValidationException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-335459951"></a>
+                                <a href="../namespaces/Klein.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-335459951" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-295223783"></a>
+                                <a href="../namespaces/Klein.Tests.DataCollection.html" style="margin-left: 30px; padding-left: 0">DataCollection</a>
+            </div>
+            <div id="namespace-295223783" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.DataCollectionTest.html">DataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.HeaderDataCollectionTest.html">HeaderDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ResponseCookieDataCollectionTest.html">ResponseCookieDataCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.RouteCollectionTest.html">RouteCollectionTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.DataCollection.ServerDataCollectionTest.html">ServerDataCollectionTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-609603198"></a>
+                                <a href="../namespaces/Klein.Tests.Mocks.html" style="margin-left: 30px; padding-left: 0">Mocks</a>
+            </div>
+            <div id="namespace-609603198" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.MockRequestFactory.html">MockRequestFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.Mocks.TestClass.html">TestClass</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractKleinTest.html">AbstractKleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AbstractRouteFactoryTest.html">AbstractRouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.AppTest.html">AppTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.HttpStatusTests.html">HttpStatusTests</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.KleinTest.html">KleinTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RequestTest.html">RequestTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponseCookieTest.html">ResponseCookieTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ResponsesTest.html">ResponsesTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteFactoryTest.html">RouteFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RouteTest.html">RouteTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.RoutingTest.html">RoutingTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ServiceProviderTest.html">ServiceProviderTest</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Tests.ValidationsTest.html">ValidationsTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Klein.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Klein.AbstractRouteFactory.html">AbstractRouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.App.html">App</a></li>
+                                                    <li class="class"><a href="../classes/Klein.HttpStatus.html">HttpStatus</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Klein.html">Klein</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ResponseCookie.html">ResponseCookie</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Route.html">Route</a></li>
+                                                    <li class="class"><a href="../classes/Klein.RouteFactory.html">RouteFactory</a></li>
+                                                    <li class="class"><a href="../classes/Klein.ServiceProvider.html">ServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/Klein.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d.html">ComposerAutoloaderInit7013c645b851bd3be353a1f6e46b5a8d</a></li>
+                                                    <li class="class"><a href="../classes/crud.html">crud</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/FrameworkWesllen.Routing.html">\FrameworkWesllen\Routing</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\FrameworkWesllen\Routing</small>Route</h1>
+                    <p><em>Klein</em></p>
+                    <p>Main Klein router class</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_routes" class="">routes()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_request" class="">request()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_response" class="">response()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_service" class="">service()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_app" class="">app()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_respond" class="">respond()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_with" class="">with()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_dispatch" class="">dispatch()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_getPathFor" class="">getPathFor()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_onError" class="">onError()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_onHttpError" class="">onHttpError()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_afterDispatch" class="">afterDispatch()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_skipThis" class="">skipThis()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_skipNext" class="">skipNext()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_skipRemaining" class="">skipRemaining()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_abort" class="">abort()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_options" class="">options()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_head" class="">head()</a><br />
+                                                                    <a href="../classes/FrameworkWesllen.Routing.Route.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/FrameworkWesllen.Routing.Route.html#method_post" class="">post()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_put" class="">put()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_patch" class="">patch()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#constant_ROUTE_COMPILE_REGEX" class="">ROUTE_COMPILE_REGEX</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_ROUTE_ESCAPE_REGEX" class="">ROUTE_ESCAPE_REGEX</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_DISPATCH_NO_CAPTURE" class="">DISPATCH_NO_CAPTURE</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_DISPATCH_CAPTURE_AND_RETURN" class="">DISPATCH_CAPTURE_AND_RETURN</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_DISPATCH_CAPTURE_AND_REPLACE" class="">DISPATCH_CAPTURE_AND_REPLACE</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_DISPATCH_CAPTURE_AND_PREPEND" class="">DISPATCH_CAPTURE_AND_PREPEND</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#constant_DISPATCH_CAPTURE_AND_APPEND" class="">DISPATCH_CAPTURE_AND_APPEND</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#method_parseLooseArgumentOrder" class="">parseLooseArgumentOrder()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_compileRoute" class="">compileRoute()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_handleRouteCallback" class="">handleRouteCallback()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_error" class="">error()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_httpError" class="">httpError()</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#method_callAfterDispatchCallbacks" class="">callAfterDispatchCallbacks()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#property_match_types" class="">$match_types</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_routes" class="">$routes</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_route_factory" class="">$route_factory</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_error_callbacks" class="">$error_callbacks</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_http_error_callbacks" class="">$http_error_callbacks</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_after_filter_callbacks" class="">$after_filter_callbacks</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_request" class="">$request</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_response" class="">$response</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_service" class="">$service</a><br />
+                                                                    <a href="../classes/Klein.Klein.html#property_app" class="">$app</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#method_validateRegularExpression" class="">validateRegularExpression()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Klein.Klein.html#property_output_buffer_level" class="">$output_buffer_level</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/vendor.frameworkWesllen.Routing.Route.html"><div class="path-wrapper">vendor\frameworkWesllen\Routing\Route.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Klein.Klein.html">\Klein\Klein</a></div>
+                                                                                                    <div class="namespace-wrapper">\FrameworkWesllen\Routing\Route</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ROUTE_COMPILE_REGEX" name="constant_ROUTE_COMPILE_REGEX" class="anchor"></a>
+            <article id="constant_ROUTE_COMPILE_REGEX" class="constant">
+                <h3 class="">ROUTE_COMPILE_REGEX</h3>
+                <pre class="signature">ROUTE_COMPILE_REGEX</pre>
+                <p><em>The regular expression used to compile and match URL&#039;s</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>string</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ROUTE_ESCAPE_REGEX" name="constant_ROUTE_ESCAPE_REGEX" class="anchor"></a>
+            <article id="constant_ROUTE_ESCAPE_REGEX" class="constant">
+                <h3 class="">ROUTE_ESCAPE_REGEX</h3>
+                <pre class="signature">ROUTE_ESCAPE_REGEX</pre>
+                <p><em>The regular expression used to escape the non-named param section of a route URL</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>string</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DISPATCH_NO_CAPTURE" name="constant_DISPATCH_NO_CAPTURE" class="anchor"></a>
+            <article id="constant_DISPATCH_NO_CAPTURE" class="constant">
+                <h3 class="">DISPATCH_NO_CAPTURE</h3>
+                <pre class="signature">DISPATCH_NO_CAPTURE</pre>
+                <p><em>Dispatch route output handling</em></p>
+                <p>Don't capture anything. Behave as normal.</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DISPATCH_CAPTURE_AND_RETURN" name="constant_DISPATCH_CAPTURE_AND_RETURN" class="anchor"></a>
+            <article id="constant_DISPATCH_CAPTURE_AND_RETURN" class="constant">
+                <h3 class="">DISPATCH_CAPTURE_AND_RETURN</h3>
+                <pre class="signature">DISPATCH_CAPTURE_AND_RETURN</pre>
+                <p><em>Dispatch route output handling</em></p>
+                <p>Capture all output and return it from dispatch</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DISPATCH_CAPTURE_AND_REPLACE" name="constant_DISPATCH_CAPTURE_AND_REPLACE" class="anchor"></a>
+            <article id="constant_DISPATCH_CAPTURE_AND_REPLACE" class="constant">
+                <h3 class="">DISPATCH_CAPTURE_AND_REPLACE</h3>
+                <pre class="signature">DISPATCH_CAPTURE_AND_REPLACE</pre>
+                <p><em>Dispatch route output handling</em></p>
+                <p>Capture all output and replace the response body with it</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DISPATCH_CAPTURE_AND_PREPEND" name="constant_DISPATCH_CAPTURE_AND_PREPEND" class="anchor"></a>
+            <article id="constant_DISPATCH_CAPTURE_AND_PREPEND" class="constant">
+                <h3 class="">DISPATCH_CAPTURE_AND_PREPEND</h3>
+                <pre class="signature">DISPATCH_CAPTURE_AND_PREPEND</pre>
+                <p><em>Dispatch route output handling</em></p>
+                <p>Capture all output and prepend it to the response body</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DISPATCH_CAPTURE_AND_APPEND" name="constant_DISPATCH_CAPTURE_AND_APPEND" class="anchor"></a>
+            <article id="constant_DISPATCH_CAPTURE_AND_APPEND" class="constant">
+                <h3 class="">DISPATCH_CAPTURE_AND_APPEND</h3>
+                <pre class="signature">DISPATCH_CAPTURE_AND_APPEND</pre>
+                <p><em>Dispatch route output handling</em></p>
+                <p>Capture all output and append it to the response body</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_match_types" name="property_match_types" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$match_types</h3>
+                <pre class="signature">$match_types : </pre>
+                <p><em>The types to detect in a defined match &quot;block&quot;</em></p>
+                <p>Examples of these blocks are as follows:</p>
+<ul>
+<li>integer:       '[i:id]'</li>
+<li>alphanumeric:  '[a:username]'</li>
+<li>hexadecimal:   '[h:color]'</li>
+<li>slug:          '[s:article]'</li>
+</ul>
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>array</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_routes" name="property_routes" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$routes</h3>
+                <pre class="signature">$routes : </pre>
+                <p><em>Collection of the routes to match on dispatch</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>RouteCollection</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_route_factory" name="property_route_factory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$route_factory</h3>
+                <pre class="signature">$route_factory : </pre>
+                <p><em>The Route factory object responsible for creating Route instances</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>AbstractRouteFactory</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_error_callbacks" name="property_error_callbacks" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$error_callbacks</h3>
+                <pre class="signature">$error_callbacks : </pre>
+                <p><em>A stack of error callback callables</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>SplStack</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_http_error_callbacks" name="property_http_error_callbacks" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$http_error_callbacks</h3>
+                <pre class="signature">$http_error_callbacks : </pre>
+                <p><em>A stack of HTTP error callback callables</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>SplStack</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_after_filter_callbacks" name="property_after_filter_callbacks" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$after_filter_callbacks</h3>
+                <pre class="signature">$after_filter_callbacks : </pre>
+                <p><em>A queue of callbacks to call after processing the dispatch loop
+and before the response is sent</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>SplQueue</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_request" name="property_request" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$request</h3>
+                <pre class="signature">$request : </pre>
+                <p><em>The Request object passed to each matched route</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>Request</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_response" name="property_response" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$response</h3>
+                <pre class="signature">$response : </pre>
+                <p><em>The Response object passed to each matched route</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>AbstractResponse</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_service" name="property_service" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$service</h3>
+                <pre class="signature">$service : </pre>
+                <p><em>The service provider object passed to each matched route</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>ServiceProvider</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_app" name="property_app" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$app</h3>
+                <pre class="signature">$app : </pre>
+                <p><em>A generic variable passed to each matched route</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>mixed</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_output_buffer_level" name="property_output_buffer_level" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$output_buffer_level</h3>
+                <pre class="signature">$output_buffer_level : </pre>
+                <p><em>The output buffer level used by the dispatch process</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            type
+                        </th>
+                        <td>
+                                                            <p>int</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Klein\ServiceProvider  <span class="argument">$service = null</span>, mixed  <span class="argument">$app = null</span>, \Klein\DataCollection\RouteCollection  <span class="argument">$routes = null</span>, \Klein\AbstractRouteFactory  <span class="argument">$route_factory = null</span>) </pre>
+                <p><em>Constructor</em></p>
+                <p>Create a new Klein instance with optionally injected dependencies
+This DI allows for easy testing, object mocking, or class extension</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Klein.ServiceProvider.html">\Klein\ServiceProvider</a></td>
+                                <td>$service </td>
+                                <td><p>Service provider object responsible for utilitarian behaviors</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$app </td>
+                                <td><p>An object passed to each route callback, defaults to an App instance</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Klein.DataCollection.RouteCollection.html">\Klein\DataCollection\RouteCollection</a></td>
+                                <td>$routes </td>
+                                <td><p>Collection object responsible for containing all route instances</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Klein.AbstractRouteFactory.html">\Klein\AbstractRouteFactory</a></td>
+                                <td>$route_factory </td>
+                                <td><p>A factory class responsible for creating Route instances</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_routes" name="method_routes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">routes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">routes() : \Klein\DataCollection\RouteCollection</pre>
+                <p><em>Returns the routes object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.DataCollection.RouteCollection.html">\Klein\DataCollection\RouteCollection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_request" name="method_request" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">request()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">request() : \Klein\Request</pre>
+                <p><em>Returns the request object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Request.html">\Klein\Request</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_response" name="method_response" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">response()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">response() : \Klein\Response</pre>
+                <p><em>Returns the response object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Response.html">\Klein\Response</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_service" name="method_service" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">service()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">service() : \Klein\ServiceProvider</pre>
+                <p><em>Returns the service object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.ServiceProvider.html">\Klein\ServiceProvider</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_app" name="method_app" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">app()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">app() : mixed</pre>
+                <p><em>Returns the app object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_respond" name="method_respond" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">respond()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">respond(string|array  <span class="argument">$method</span>, string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>Add a new route to be matched on dispatch</em></p>
+                <p>Essentially, this method is a standard &quot;Route&quot; builder/factory,
+allowing a loose argument format and a standard way of creating
+Route instances</p>
+<p>This method takes its arguments in a very loose format
+The only &quot;required&quot; parameter is the callback (which is very strange considering the argument definition order)</p>
+<p><code>
+$router = new Klein();</p>
+<p>$router-&gt;respond( function() {
+echo 'this works';
+});
+$router-&gt;respond( '/endpoint', function() {
+echo 'this also works';
+});
+$router-&gt;respond( 'POST', '/endpoint', function() {
+echo 'this also works!!!!';
+});
+</code></p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|array</td>
+                                <td>$method </td>
+                                <td><p>HTTP Method to match</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>Route URI path to match</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>Callable callback method to execute on route match</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_with" name="method_with" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">with()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">with(string  <span class="argument">$namespace</span>, callable|string  <span class="argument">$routes</span>) : void</pre>
+                <p><em>Collect a set of routes under a common namespace</em></p>
+                <p>The routes may be passed in as either a callable (which holds the route definitions),
+or as a string of a filename, of which to &quot;include&quot; under the Klein router scope</p>
+<p><code>
+$router = new Klein();</p>
+<p>$router-&gt;with('/users', function($router) {
+$router-&gt;respond( '/', function() {
+// do something interesting
+});
+$router-&gt;respond( '/[i:id]', function() {
+// do something different
+});
+});</p>
+<p>$router-&gt;with('/cars', <strong>DIR</strong> . '/routes/cars.php');
+</code></p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$namespace </td>
+                                <td><p>The namespace under which to collect the routes</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable|string</td>
+                                <td>$routes </td>
+                                <td><p>The defined routes callable or filename to collect under the namespace</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dispatch" name="method_dispatch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dispatch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dispatch(\Klein\Request  <span class="argument">$request = null</span>, \Klein\AbstractResponse  <span class="argument">$response = null</span>, boolean  <span class="argument">$send_response = true</span>, integer  <span class="argument">$capture = self::DISPATCH_NO_CAPTURE</span>) : void|string</pre>
+                <p><em>Dispatch the request to the appropriate route(s)</em></p>
+                <p>Dispatch with optionally injected dependencies
+This DI allows for easy testing, object mocking, or class extension</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Klein.Request.html">\Klein\Request</a></td>
+                                <td>$request </td>
+                                <td><p>The request object to give to each callback</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Klein.AbstractResponse.html">\Klein\AbstractResponse</a></td>
+                                <td>$response </td>
+                                <td><p>The response object to give to each callback</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$send_response </td>
+                                <td><p>Whether or not to &quot;send&quot; the response after the last route has been matched</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$capture </td>
+                                <td><p>Specify a DISPATCH_* constant to change the output capturing behavior</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    void|string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPathFor" name="method_getPathFor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPathFor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPathFor(string  <span class="argument">$route_name</span>, array  <span class="argument">$params = null</span>, boolean  <span class="argument">$flatten_regex = true</span>) : string</pre>
+                <p><em>Get the path for a given route</em></p>
+                <p>This looks up the route by its passed name and returns
+the path/url for that route, with its URL params as
+placeholders unless you pass a valid key-value pair array
+of the placeholder params and their values</p>
+<p>If a pathname is a complex/custom regular expression, this
+method will simply return the regular expression used to
+match the request pathname, unless an optional boolean is
+passed &quot;flatten_regex&quot; which will flatten the regular
+expression into a simple path string</p>
+<p>This method, and its style of reverse-compilation, was originally
+inspired by a similar effort by Gilles Bouthenot (@gbouthenot)</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$route_name </td>
+                                <td><p>The name of the route</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td><p>The array of placeholder fillers</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$flatten_regex </td>
+                                <td><p>Optionally flatten custom regular expressions to &quot;/&quot;</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OutOfBoundsException</dt>
+                            <dd><p>If the route requested doesn't exist</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://github.com/gbouthenot"><span class="namespace-wrapper">https://github.com/gbouthenot</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_onError" name="method_onError" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">onError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">onError(callable  <span class="argument">$callback</span>) : void</pre>
+                <p><em>Adds an error callback to the stack of error handlers</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>The callable function to execute in the error handling chain</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_onHttpError" name="method_onHttpError" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">onHttpError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">onHttpError(callable  <span class="argument">$callback</span>) : void</pre>
+                <p><em>Adds an HTTP error callback to the stack of HTTP error handlers</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>The callable function to execute in the error handling chain</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_afterDispatch" name="method_afterDispatch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">afterDispatch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">afterDispatch(callable  <span class="argument">$callback</span>) : void</pre>
+                <p><em>Adds a callback to the stack of handlers to run after the dispatch
+loop has handled all of the route callbacks and before the response
+is sent</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>The callable function to execute in the after route chain</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_skipThis" name="method_skipThis" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">skipThis()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">skipThis() : void</pre>
+                <p><em>Quick alias to skip the current callback/route method from executing</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\DispatchHaltedException</dt>
+                            <dd><p>To halt/skip the current dispatch loop</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_skipNext" name="method_skipNext" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">skipNext()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">skipNext(integer  <span class="argument">$num = 1</span>) : void</pre>
+                <p><em>Quick alias to skip the next callback/route method from executing</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$num </td>
+                                <td><p>The number of next matches to skip</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\DispatchHaltedException</dt>
+                            <dd><p>To halt/skip the current dispatch loop</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_skipRemaining" name="method_skipRemaining" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">skipRemaining()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">skipRemaining() : void</pre>
+                <p><em>Quick alias to stop the remaining callbacks/route methods from executing</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\DispatchHaltedException</dt>
+                            <dd><p>To halt/skip the current dispatch loop</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_abort" name="method_abort" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">abort()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">abort(integer  <span class="argument">$code = null</span>) : void</pre>
+                <p><em>Alias to set a response code, lock the response, and halt the route matching/dispatching</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$code </td>
+                                <td><p>Optional HTTP status code to send</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\DispatchHaltedException</dt>
+                            <dd><p>To halt/skip the current dispatch loop</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_options" name="method_options" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">options()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">options(string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>OPTIONS alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_head" name="method_head" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">head()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">head(string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>HEAD alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get" name="method_get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get(  <span class="argument">$route = &#039;*&#039;</span>,   <span class="argument">$call = NULL</span>) : \Klein\Route</pre>
+                <p><em>GET alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$route </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$call </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_post" name="method_post" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">post()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">post(  <span class="argument">$route = &#039;*&#039;</span>,   <span class="argument">$call = NULL</span>) : \Klein\Route</pre>
+                <p><em>POST alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$route </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$call </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_put" name="method_put" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">put()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">put(string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>PUT alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>DELETE alias for &quot;respond()&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_patch" name="method_patch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">patch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">patch(string  <span class="argument">$path = &#039;*&#039;</span>, callable  <span class="argument">$callback = null</span>) : \Klein\Route</pre>
+                <p><em>PATCH alias for &quot;respond()&quot;</em></p>
+                <p>PATCH was added to HTTP/1.1 in RFC5789</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Klein.Route.html">\Klein\Route</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://tools.ietf.org/html/rfc5789"><span class="namespace-wrapper">http://tools.ietf.org/html/rfc5789</span></a></dd>
+                                                                                                    <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseLooseArgumentOrder" name="method_parseLooseArgumentOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">parseLooseArgumentOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseLooseArgumentOrder(mixed  <span class="argument">$args</span>) : array</pre>
+                <p><em>Parse our extremely loose argument order of our &quot;respond&quot; method and its aliases</em></p>
+                <p>This method takes its arguments in a loose format and order.
+The method signature is simply there for documentation purposes, but allows
+for the minimum of a callback to be passed in its current configuration.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$args </td>
+                                <td><p>An argument array. Hint: This works well when passing &quot;func_get_args()&quot;
+@named string | array $method   HTTP Method to match
+@named string $path             Route URI path to match
+@named callable $callback       Callable callback method to execute on route match</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>A named parameter array containing the keys: 'method', 'path', and 'callback'</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Klein.Klein.html#method_respond"><span class="namespace-wrapper">\Klein\Klein::respond()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_compileRoute" name="method_compileRoute" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">compileRoute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">compileRoute(string  <span class="argument">$route</span>) : string</pre>
+                <p><em>Compiles a route string to a regular expression</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$route </td>
+                                <td><p>The route string to compile</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_handleRouteCallback" name="method_handleRouteCallback" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">handleRouteCallback()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">handleRouteCallback(\Klein\Route  <span class="argument">$route</span>, \Klein\DataCollection\RouteCollection  <span class="argument">$matched</span>, array  <span class="argument">$methods_matched</span>) : void</pre>
+                <p><em>Handle a route&#039;s callback</em></p>
+                <p>This handles common exceptions and their output
+to keep the &quot;dispatch()&quot; method DRY</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Klein.Route.html">\Klein\Route</a></td>
+                                <td>$route </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Klein.DataCollection.RouteCollection.html">\Klein\DataCollection\RouteCollection</a></td>
+                                <td>$matched </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$methods_matched </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_error" name="method_error" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">error()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">error(\Exception|\Throwable  <span class="argument">$err</span>) : void</pre>
+                <p><em>Routes an exception through the error callbacks</em></p>
+                <p>TODO: Change the <code>$err</code> parameter to type-hint against <code>Throwable</code> once
+PHP 5.x support is no longer necessary.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Exception|\Throwable</td>
+                                <td>$err </td>
+                                <td><p>The exception that occurred</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\UnhandledException</dt>
+                            <dd><p>If the error/exception isn't handled by an error callback</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_httpError" name="method_httpError" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">httpError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">httpError(\Klein\Exceptions\HttpExceptionInterface  <span class="argument">$http_exception</span>, \Klein\DataCollection\RouteCollection  <span class="argument">$matched</span>, array  <span class="argument">$methods_matched</span>) : void</pre>
+                <p><em>Handles an HTTP error exception through our HTTP error callbacks</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Klein.Exceptions.HttpExceptionInterface.html">\Klein\Exceptions\HttpExceptionInterface</a></td>
+                                <td>$http_exception </td>
+                                <td><p>The exception that occurred</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Klein.DataCollection.RouteCollection.html">\Klein\DataCollection\RouteCollection</a></td>
+                                <td>$matched </td>
+                                <td><p>The collection of routes that were matched in dispatch</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$methods_matched </td>
+                                <td><p>The HTTP methods that were matched in dispatch</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_callAfterDispatchCallbacks" name="method_callAfterDispatchCallbacks" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">callAfterDispatchCallbacks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">callAfterDispatchCallbacks() : void</pre>
+                <p><em>Runs through and executes the after dispatch callbacks</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validateRegularExpression" name="method_validateRegularExpression" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">validateRegularExpression()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validateRegularExpression(string  <span class="argument">$regex</span>) : boolean</pre>
+                <p><em>Validate a regular expression</em></p>
+                <p>This simply checks if the regular expression is able to be compiled
+and converts any warnings or notices in the compilation to an exception</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$regex </td>
+                                <td><p>The regular expression to validate</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Klein\Exceptions\RegularExpressionCompilationException</dt>
+                            <dd><p>If the expression can't be compiled</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Klein.Klein.html"><div class="path-wrapper">\Klein\Klein</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Route.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/vendor\frameworkWesllen\Routing\Route.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/App.html">\App</a></li>
+                                                                            <li><a href="../namespaces/Composer.html">\Composer</a></li>
+                                                                            <li><a href="../namespaces/FrameworkWesllen.html">\FrameworkWesllen</a></li>
+                                                                            <li><a href="../namespaces/Klein.html">\Klein</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 5th, 2018 at 15:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
