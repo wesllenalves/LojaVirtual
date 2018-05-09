@@ -19,6 +19,7 @@ use App\Model\Home\Login;
 use App\Model\Home\TabelaProdutos;
 use App\Model\Home\CadastroUser;
 use App\Model\Home\Loginatteempt;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Essa classe @exteds da classe baseHomeController
@@ -61,7 +62,7 @@ class HomeController extends baseHomeController {
         $attemps = new Loginatteempt();
         if (isset($fazerLog)) {
             $model = new Login();
-            if ($model->CheckIsNull(filter_input_array(INPUT_POST, $_POST)) === TRUE) {
+            if ($model->CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) === TRUE) {
                 $_SESSION['erro'] = "Preencha todos os campos";
                 $this->response->redirect('/index/login')->send();
                 exit;            
@@ -99,68 +100,79 @@ class HomeController extends baseHomeController {
         $model = new CadastroUser();
         $funcoes = new Funcoes();
 
-        if ($model->CheckIsNull(filter_input_array(INPUT_POST, $_POST)) == TRUE) {
+        if ($model->CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
             $_SESSION['erro'] = "Por favor digite todos os Campos";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->CheckCpf(filter_input_array(INPUT_POST, $_POST)) == TRUE) {
+        } elseif ($model->CheckCpf(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
             //verifica se o cpf e valido se nao redireciono para a pagina cadastro com uma sessao de erro
             $_SESSION['erro'] = "Por favor digite um CPF válido!";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->CheckRepitaSenha(filter_input_array(INPUT_POST, $_POST))) {
+        } elseif ($model->CheckRepitaSenha(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
             //Verifica se as senhas conicidem se não volta para pagina de castrados com uma sessao de erro
             $_SESSION['erro'] = "Por favor digite as senhas iguais";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->ExitsUser(filter_input_array(INPUT_POST, $_POST))) {
+        } elseif ($model->ExitsUser(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
             $_SESSION['erro'] = "Ja Existe os Mesmos Dados Cadastrados no Banco";
             $this->response->redirect('/index/cadastro')->send();
             exit;
         } else {
-            $nome = addslashes($_POST['nome']);
-            $email = addslashes($_POST['email']);
-            $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+            
+            $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            
+            $nome = addslashes($post['nome']);
+            $email = addslashes($post['email']);
+            $senha = addslashes($post['senha']);
             $salt = password_hash($senha, PASSWORD_DEFAULT);
-            $cpf = addslashes($_POST['cpf']);
-            $dataNasc = addslashes($_POST['dataNasc']);
-            $celular = addslashes($_POST['celular']);
-            $telefoneFixo = addslashes($_POST['telefoneFixo']);
+            $cpf = addslashes($post['cpf']);
+            $dataNasc = addslashes($post['dataNasc']);
+            $celular = addslashes($post['celular']);
+            $telefoneFixo = addslashes($post['telefoneFixo']);
             $tipoUsuario = 0;
 
-            $cep = addslashes($_POST['cep']);
-            $rua = addslashes($_POST['rua']);
-            $bairro = addslashes($_POST['bairro']);
-            $cidade = addslashes($_POST['cidade']);
-            $estado = addslashes($_POST['uf']);
-            $complemento = addslashes($_POST['complemento']);
+            $cep = addslashes($post['cep']);
+            $rua = addslashes($post['rua']);
+            $bairro = addslashes($post['bairro']);
+            $cidade = addslashes($post['cidade']);
+            $estado = addslashes($post['uf']);
+            $complemento = addslashes($post['complemento']);
+            
 
-
-            $dados = array(
-                "0" =>
-                        array(
-                            "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1),
-                            "salt" => $salt, "cpf" => $cpf, "dataNas" => $dataNasc,
-                            "celular" => $celular, "telefoneFixo" => $telefoneFixo, "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2)
-                        ),
-                "1" =>
-                        array(
-                            "cep" => $cep, "rua" => $rua, "bairro" => $bairro, "cidade" => $cidade,
-                            "estado" => $estado, "complemento" => $complemento
-                        )
-                
-            );            
+//            $dados = array(
+//                "0" =>
+//                        array(
+//                            "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1),
+//                            "salt" => $salt, "cpf" => $cpf, "dataNas" => $dataNasc,
+//                            "celular" => $celular, "telefoneFixo" => $telefoneFixo, "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2)
+//                        ),
+//                "1" =>
+//                        array(
+//                            "cep" => $cep, "rua" => $rua, "bairro" => $bairro, "cidade" => $cidade,
+//                            "estado" => $estado, "complemento" => $complemento
+//                        )
+//                
+//            );            
 
            
-            if ($model->insertEstrangeiro($dados)) {
+            //if ($model->insertEstrangeiro($dados)) {  
+                
+                $dados = array(
+                    "email" => $email,
+                    "assunto" => 'Cadastro com sucesso',
+                    "nome" => $nome,
+                    "mensagem" => 'Parabéns foi realizado o seu cadastro com sucesso em nossa plataforma'
+                    );
+                $funcoes->EnviarEmail($dados);
                 $_SESSION['success'] = "Cadastrado com Sucesso";
-                $this->response->redirect('/index/cadastro')->send();
+                //$this->response->redirect('/index/cadastro')->send();
                 exit;
-            } else {
-                $_SESSION['erro'] = "Não foi possivel fazer seu Cadastro por favor entre em contato com email suporte@suport.com";
-                $this->response->redirect('/index/cadastro')->send();
-                exit;
-            }
+//            } else {
+//                $_SESSION['erro'] = "Não foi possivel fazer seu Cadastro por favor entre em contato com email suporte@suport.com";
+//                $this->response->redirect('/index/cadastro')->send();
+//                exit;
+//            }
         }
     }
 }
