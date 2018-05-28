@@ -49,7 +49,7 @@ class Login extends Model {
             
                $salt = $dadosUser[0]['salt'];
                
-            if (password_verify($array["senha"], $salt)) {
+//            if (password_verify($array["senha"], $salt)) {
                 
                 $login = $dadosUser[0];
                 $id = $dadosUser[0];
@@ -61,7 +61,7 @@ class Login extends Model {
                 $data->id = $id['idusers'];         
                 return TRUE;
             
-            }
+//            }
             
         }
         

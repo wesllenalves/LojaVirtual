@@ -43,9 +43,9 @@ abstract class Model {
            
             $query1 = $this->con->conecta()->prepare("INSERT INTO $this->tabela1 ({$insert_campos_1}) VALUES('{$insert_values_1}');");
             
-             if ($query1->execute()) {                
-                    $id =  $this->con->conecta()->lastInsertId();
-                    
+             if ($query1->execute()) { 
+                 
+                    $id =  $this->con->conecta()->lastInsertId();                    
                     $campos_array_0 = array_keys($campos_values[0]);
                     $values_array_0 = array_values($campos_values[0]);
             
@@ -53,8 +53,7 @@ abstract class Model {
                     $insert_values_0 = implode("','", $values_array_0);
                     $query2 = $this->con->conecta()->prepare("INSERT INTO $this->tabela2 ({$insert_campos_0}, $this->chaveEstrangeira) VALUES('{$insert_values_0}','{$id}');");
                     
-                        if ($query2->execute()) {
-                            
+                        if ($query2->execute()) {                            
                             return TRUE;
                         }else{
                             print_r($query2->errorInfo());
@@ -62,7 +61,7 @@ abstract class Model {
              
                 return TRUE;
             } else {
-                print_r($query->errorInfo());
+                print_r($query1->errorInfo());
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -73,7 +72,7 @@ abstract class Model {
         try {
             $where_sql = empty($where) ? "" : "WHERE " . $where;
             $r = $this->con->conecta()->prepare("SELECT {$campos} FROM $this->tabela {$where_sql};");
-              
+            
             if ($r->execute()) {
                 return $r->fetchAll(PDO::FETCH_ASSOC);
             } else {

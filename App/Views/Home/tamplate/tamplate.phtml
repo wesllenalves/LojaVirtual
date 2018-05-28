@@ -224,7 +224,7 @@ if (isset($_GET['acao'])) {
                                 <?php
                                 if (isset($_SESSION['logado']) != 'sim') {
                                     ?>
-                                <li><a class="text-uppercase" href="<?= base_url('') ?>/index/login">Login</a> / <a class="text-uppercase" href="<?= base_url('') ?>/index/cadastro" >Criar</a></li>
+                            <li><a class="text-uppercase" href="<?= base_url('') ?>/index/login">Login</a> / <a class="text-uppercase" href="<?= base_url('') ?>/index/cadastro" >Criar</a></li>
                                 <?php
                             }
                             ?>
@@ -281,22 +281,22 @@ if (isset($_GET['acao'])) {
                                             <div class="shopping-cart-list">                                    
 
 
-                                                <?php
-                                                foreach ($_SESSION['carrinho'] as $id => $qtd) {
+    <?php
+    foreach ($_SESSION['carrinho'] as $id => $qtd) {
+        
 
+        $sql = "SELECT * FROM produto as p JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor WHERE codigoProduto = ' $id'";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $exibe = mysqli_fetch_assoc($query);
 
-                                                    $sql = "SELECT * FROM produto as p JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor WHERE codigoProduto = ' $id'";
-                                                    $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                                                    $exibe = mysqli_fetch_assoc($query);
+        $codigo = $exibe['codigoProduto'];
+        $nomeProduto = $exibe['nomeProduto'];
+        $qtdEstoque = $exibe['qtdEstoque'];
+        $valor = $exibe['valor'];
+        $foto = $exibe['fotoProduto'];
+        $sub = $exibe['valor'] * $qtd;
 
-                                                    $codigo = $exibe['codigoProduto'];
-                                                    $nomeProduto = $exibe['nomeProduto'];
-                                                    $qtdEstoque = $exibe['qtdEstoque'];
-                                                    $valor = $exibe['valor'];
-                                                    $foto = $exibe['fotoProduto'];
-                                                    $sub = $exibe['valor'] * $qtd;
-
-                                                    echo '<div class="product product-widget">
+        echo '<div class="product product-widget">
             <div class="product-thumb">
               <img src="./img/' . $foto . '" alt="" width="100" height="80">
              </div>
@@ -307,8 +307,8 @@ if (isset($_GET['acao'])) {
                 <button class="cancel-btn"><a href="?acao=del&id=' . $id . '"><i class="fa fa-trash"></i></a></button>
                 </div>                
                  ';
-                                                }
-                                                ?>
+    }
+    ?>
                                                 <div class="shopping-cart-btns">
                                                     <button class="main-btn">View Cart</button>
                                                     <a href="checkout.php"><button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button></a>
