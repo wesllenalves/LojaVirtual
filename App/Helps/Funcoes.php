@@ -52,60 +52,66 @@ class Funcoes {
     }
 
     public function EnviarEmail($dados) {
-        //Create a new PHPMailer instance
-        $mail = new PHPMailer;
-//Tell PHPMailer to use SMTP
-        $mail->isSMTP();
-//Enable SMTP debugging
-// 0 = off (for production use)
-// 1 = client messages
-// 2 = client and server messages
-        $mail->SMTPDebug = 4;
-//Set the hostname of the mail server
-        // $mail->Host = 'smtp.gmail.com';
-// use
-        
-        $mail->Host = 'smtp.mailtrap.io';
-        
-// if your network does not support SMTP over IPv6
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-        $mail->Port = 465;
-//Set the encryption system to use - ssl (deprecated) or tls
-        $mail->SMTPSecure = 'plain';
-        //Whether to use SMTP authentication
-        $mail->SMTPAuth = true;
-//Username to use for SMTP authentication - use full email address for gmail
-        $mail->Username = "468118db151f47";
-//Password to use for SMTP authentication
-        $mail->Password = 'c1a05514b15db3';
-
-        //Set who the message is to be sent from
-        $mail->setFrom('wesllenalves@gmail.com', 'First Last');
-
-//Set who the message is to be sent to
-        $mail->addAddress($dados['email']);
-        $mail->addReplyTo('wesllenalves@gmail.com', 'First Last');
-        $mail->Subject = '' . $this->tratarCaracter($dados['assunto'], 1) . '';
-
-        $html = '<p><strong>Nome:</strong>' . $this->tratarCaracter($dados['nome'], 1) . '<br>';
-        $html .= '<p><strong>E-mail:</strong>' . $dados['email'] . '<br>';
-        $html .= '<p><strong>Assunto:</strong>' . $this->tratarCaracter($dados['assunto'], 1) . '<br>';
-        $html .= '<p><strong>Menssagem:</strong><br>';
-        $html .= $this->tratarCaracter($dados['mensagem'], 1) . '</p>';
-
-        $mail->msgHTML($html);
-        if (!$mail->send()) {
-            
-            
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
-            //Section 2: IMAP
-            //Uncomment these to save your message in the 'Sent Mail' folder.
-            #if (save_mail($mail)) {
-            #    echo "Message saved!";
-            #}
-        }
+       
+        try {
+                require 'PHPMailer/class.phpmailer.php';
+                 $Mailer = new \PHPMailer();
+			
+			//Define que será usado SMTP
+			$Mailer->IsSMTP();
+			
+			//Enviar e-mail em HTML
+			$Mailer->isHTML(true);
+			
+			//Aceitar carasteres especiais
+			$Mailer->Charset = 'UTF-8';
+			$Mailer->SMTPDebug = 3;
+			//Configurações
+			$Mailer->SMTPAuth = true;
+			$Mailer->SMTPSecure = 'ssl';
+			
+			//nome do servidor
+			$Mailer->Host = 'smtp.gmail.com';
+			//Porta de saida de e-mail 
+			$Mailer->Port = 587;
+			
+			//Dados do e-mail de saida - autenticação
+			$Mailer->Username = 'wesllenalves@gmail.com';
+			$Mailer->Password = '30459780';
+			
+			//E-mail remetente (deve ser o mesmo de quem fez a autenticação)
+			$Mailer->From = 'wesllenalves@gmail.com';
+			
+			//Nome do Remetente
+			$Mailer->FromName = 'Celke';
+			
+			//Assunto da mensagem
+			$Mailer->Subject = 'Titulo - Recuperar Senha';
+			
+			//Corpo da Mensagem
+			$mensagem = "Olá <br><br>";
+			$mensagem .= "Confirme seu e-mail para receber o material! <br> <br>";
+			$mensagem .= "<a href=''>Clique aqui para confirmar seu e-mail</a><br> <br>";
+			$mensagem .= "Se você recebeu este e-mail por engano, simplesmente o exclua.<br> <br>";
+			$mensagem .= "Cesar - Celke";
+			
+			$Mailer->Body = $mensagem;
+			
+			//Corpo da mensagem em texto
+			$Mailer->AltBody = 'conteudo do E-mail em texto';
+			
+			//Destinatario 
+			$Mailer->AddAddress($dados['email']);
+			
+			if($Mailer->Send()){
+				echo "E-mail enviado com sucesso";
+			}else{
+				echo "Erro no envio do e-mail: " . $Mailer->ErrorInfo;
+			}
+			}catch(Exception $e){
+				echo "Erro no envio do e-mail: " . $Mailer->ErrorInfo;
+				echo $e->message;
+			}
     }
 
 }

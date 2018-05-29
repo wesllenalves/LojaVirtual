@@ -84,7 +84,27 @@ abstract class Model {
         }
     }
     
-    public function readChave(array $campos_values, $campos = "*", $where = null) {
+    public function readChave($campos_values, $campos = "*", $where = null) {
+        try {
+            
+//            $condicoes_array = array_values($campos_values);         
+//            $insert_values = implode("", $condicoes_array);
+            
+            $where_sql = empty($where) ? "" : "WHERE " . $where;
+            $r = $this->con->conecta()->prepare("SELECT {$campos} FROM   {$campos_values} {$where_sql};");           
+            
+            
+            if ($r->execute()) {
+                return $r->fetchAll();
+            } else {
+                print_r($r->errorInfo());
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+    
+    public function readJoin($campos_values, $campos = "*", $where = null) {
         try {
             
             $condicoes_array = array_values($campos_values);         
@@ -102,28 +122,34 @@ abstract class Model {
             echo $ex->getMessage();
         }
     }
+
     
-    
-    public function update(array $campos_values, $where) {
+
+    public function update(array $campos_values, $tabela, $where) {
         $where_sql = empty($where) ? "" : "WHERE " . $where;
         $sql_text_array = array();
         foreach ($campos_values as $campo => $valor) {
             array_push($sql_text_array, "{$campo}='{$valor}'");
         }
         $sql_text = implode(",", $sql_text_array);
-        $r = $this->pdo->prepare("UPDATE {$this->tabela} SET {$sql_text} {$where_sql}");
+        $r = $this->con->conecta()->prepare("UPDATE {$tabela} SET {$sql_text} {$where_sql}");
+       
         $r->execute();
         return $r->rowCount();
+        
     }
     public function delete($where = null) {
         try {
             
             $where_sql = empty($where) ? "" : "WHERE " . $where;
-            $r = $this->con->conecta()->prepare("DELETE FROM $this->tabela {$where_sql};");
-            print_r($r);
-            $r->execute();
+            $r = $this->con->conecta()->prepare("DELETE FROM $this->tabela {$where_sql};");            
+           $dados = $r->execute();
+            if($dados){
             return TRUE;
-            //return $r->rowCount();
+            } else {
+                return FALSE;
+            }
+           
         } catch (PDOException $ex){
                 echo $ex->getMessage();
         }

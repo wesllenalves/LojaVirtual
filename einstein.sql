@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Maio-2018 às 14:52
--- Versão do servidor: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: 29-Maio-2018 às 02:50
+-- Versão do servidor: 10.1.30-MariaDB
+-- PHP Version: 7.0.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -55,7 +57,10 @@ INSERT INTO `cliente` (`codigoCliente`, `nomeCliente`, `email`, `senha`, `salt`,
 (7, 'teste', 'admin@admin.com', '123456', '', '03230944143', '0000-00-00', '61981745695', '', 'admin', '0000-00-00 00:00:00', 7),
 (8, 'wesllen alves de sousa', 'teste01@maile3.com', 'MTI=', '$2y$10$ESDYqyakf14hcBE7ZXWbF.81.WGaLlQCb3u4qKWnRmzkNdjkxWafG', '03230944103', '2018-05-04', '61981745695', '', '0', '2018-05-04 13:08:40', 12),
 (9, 'wesllen alves de sousa', 'wesllenalves1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '$2y$10$hGi3svvs4Fd4R7QEPcOy2.s5Xtau21D010EVKsoLmNhnDTg/fY7lw', '03230944122', '1993-09-24', '61981745695', '61981745695', '0', '2018-05-07 10:31:04', 13),
-(11, 'wesllen alves de sousa', 'wesllenalves2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '$2y$10$9WtSPt8iUerzGulDx.io0OBkY8VOhJsMIh9ydMyMTT.0KkrSKQj2.', '03230944121', '1993-09-24', '61981745695', '61981745695', '0', '2018-05-08 09:19:28', 15);
+(12, 'wesllen alves de sousa11111', 'admin@teste.com', 'e10adc3949ba59abbe56e057f20f883e', 'e10dgDDB2rPTY', '03230944145', '1993-09-24', '61981745695', '61981745695', 'admin', '2018-05-28 00:50:06', 25),
+(14, 'wesllen alves de sousa11111', 'admin@teste.com', 'e10adc3949ba59abbe56e057f20f883e', 'e10dgDDB2rPTY', '03230944145', '1993-09-24', '61981745695', '61981745695', 'admin', '2018-05-28 00:50:17', 26),
+(15, 'wesllen alves de sousa', 'wesllenalves@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '$2y$10$2ebwRyCq3RT8LI0KijC7aeHzNyb08/B1IX3RY5qT.O1sdSyuFzb8q', '03230944147', '1993-09-24', '61981745695', '61981745695', 'comun', '2018-05-28 18:44:14', 27),
+(16, 'wesllen alves de sousa', 'admin@admin.com.br', 'e10adc3949ba59abbe56e057f20f883e', '$2y$10$HE87MU2ZiyWb7Ys4zKtSle89O2xqKSvweQ5dQn2pdgZUStXc/Cq2S', '03230944149', '1993-09-24', '61981745695', '61981745695', 'admin', '2018-05-28 19:00:38', 28);
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,20 @@ INSERT INTO `endereco` (`codigoEndereco`, `cep`, `rua`, `bairro`, `cidade`, `est
 (12, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'Brasília', 'DF', 'Green Park'),
 (13, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green Park'),
 (14, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green Park'),
-(15, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green Park');
+(15, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green Park'),
+(16, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(17, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(18, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(19, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(20, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(21, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(22, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(23, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(24, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(25, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(26, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(27, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park'),
+(28, '70645160', 'SRES Quadra 10 Bloco P', 'Cruzeiro Velho', 'BrasÃ­lia', 'DF', 'Green park');
 
 -- --------------------------------------------------------
 
@@ -105,39 +123,38 @@ CREATE TABLE `fornecedor` (
   `cnpj` varchar(20) NOT NULL,
   `nomeFornecedor` varchar(255) NOT NULL,
   `telefone` varchar(20) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `DataModificado` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `fornecedor`
 --
 
-INSERT INTO `fornecedor` (`codigoFornecedor`, `cnpj`, `nomeFornecedor`, `telefone`, `email`) VALUES
-(1, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(2, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(3, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(4, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(5, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(6, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com'),
-(7, '', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(8, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(9, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(10, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(11, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(12, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(13, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(14, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(15, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(16, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(17, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(18, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(19, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(20, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com'),
-(21, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com'),
-(22, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com'),
-(23, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com'),
-(24, '000000', 'tecttudo', '00000000000', 'tect@teste.com'),
-(25, 'teste', 'teste', '00000000000', 'tect@teste.com');
+INSERT INTO `fornecedor` (`codigoFornecedor`, `cnpj`, `nomeFornecedor`, `telefone`, `email`, `DataModificado`) VALUES
+(1, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(2, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(3, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(6, '', 'casa do sapato', '61981745395', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(7, '', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(8, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(9, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(10, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(11, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(12, '1234567', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(13, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(14, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(15, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(16, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(17, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(18, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(19, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '0000-00-00 00:00:00'),
+(20, '123456544554', 'casa do sapato', '6198174595', 'wesllen@gmail.com', '2018-05-28 21:26:42'),
+(21, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com', '0000-00-00 00:00:00'),
+(22, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com', '0000-00-00 00:00:00'),
+(23, '01234566789', 'Casa dos tenis ', '6198475358', 'teste@teste.com', '0000-00-00 00:00:00'),
+(24, '000000', 'tecttudo', '00000000000', 'tect@teste.com', '0000-00-00 00:00:00'),
+(26, '123456789', 'havaiannas', '61981745695', 'wesllenalves@gmail.com', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -208,7 +225,10 @@ INSERT INTO `login_attempts` (`idlogin_attempts`, `user_id`, `created_at`) VALUE
 (46, 9, '0000-00-00 00:00:00'),
 (47, 9, '0000-00-00 00:00:00'),
 (48, 9, '0000-00-00 00:00:00'),
-(49, 9, '0000-00-00 00:00:00');
+(49, 9, '0000-00-00 00:00:00'),
+(50, 7, '0000-00-00 00:00:00'),
+(52, 7, '0000-00-00 00:00:00'),
+(57, 7, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -223,6 +243,7 @@ CREATE TABLE `produto` (
   `qtdEstoque` int(11) NOT NULL,
   `valor` decimal(18,2) NOT NULL,
   `fotoProduto` varchar(255) DEFAULT NULL,
+  `DataModificado` datetime NOT NULL,
   `FKFornecedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -230,12 +251,10 @@ CREATE TABLE `produto` (
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`codigoProduto`, `nomeProduto`, `descricaoProduto`, `qtdEstoque`, `valor`, `fotoProduto`, `FKFornecedor`) VALUES
-(1, 'tennis', 'novo', 3, '25.00', 'tenis-nike-air-behold-low-masculino.jpg', 20),
-(2, 'sapatennis', 'um confortÃ¡vel sapato para o verao', 10, '80.00', 'main-product01.jpg', 22),
-(3, 'sapatennis', 'testetes para testes', 100, '90.00', 'main-product02.jpg', 23),
-(4, 'robo', 'robozinho', 200, '100.00', 'zenbo.jpg', 24),
-(5, 'teste', 'teste', 1, '101.11', 'teste.png', 25);
+INSERT INTO `produto` (`codigoProduto`, `nomeProduto`, `descricaoProduto`, `qtdEstoque`, `valor`, `fotoProduto`, `DataModificado`, `FKFornecedor`) VALUES
+(1, 'tennis', '', 10, '25.00', 'tenis-nike-air-behold-low-masculino.jpg', '2018-05-28 21:26:42', 20),
+(2, 'sapatennis', 'um confortÃ¡vel sapato para o verao', 10, '80.00', 'main-product01.jpg', '0000-00-00 00:00:00', 22),
+(6, 'chinela', 'uma pequena chinela', 200, '50.00', 'chinela.jpg', '0000-00-00 00:00:00', 26);
 
 -- --------------------------------------------------------
 
@@ -395,47 +414,56 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `codigoCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `codigoCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
 -- AUTO_INCREMENT for table `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `codigoFornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `codigoFornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
 -- AUTO_INCREMENT for table `funcionario`
 --
 ALTER TABLE `funcionario`
   MODIFY `idFuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `idlogin_attempts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `idlogin_attempts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `codigoProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `codigoProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `projeto`
 --
 ALTER TABLE `projeto`
   MODIFY `idprojeto` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `recoveries`
 --
 ALTER TABLE `recoveries`
   MODIFY `idpassword` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `idusers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Constraints for dumped tables
 --
@@ -463,7 +491,7 @@ ALTER TABLE `login_attempts`
 -- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD CONSTRAINT `FKFornecedor_codigoFornecedor` FOREIGN KEY (`FKFornecedor`) REFERENCES `fornecedor` (`codigoFornecedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FKFornecedor_codigoFornecedor` FOREIGN KEY (`FKFornecedor`) REFERENCES `fornecedor` (`codigoFornecedor`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `recoveries`
@@ -476,6 +504,7 @@ ALTER TABLE `recoveries`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `roles_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`idroles`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

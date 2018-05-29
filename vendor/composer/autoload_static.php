@@ -44,11 +44,70 @@ class ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d
         ),
     );
 
+    public static $classMap = array (
+        'App\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Controllers/AdminController.php',
+        'App\\Controllers\\BaseControllers\\baseAdminController' => __DIR__ . '/../..' . '/app/Controllers/BaseControllers/baseAdminController.php',
+        'App\\Controllers\\BaseControllers\\baseHomeController' => __DIR__ . '/../..' . '/app/Controllers/BaseControllers/baseHomeController.php',
+        'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Controllers/HomeController.php',
+        'App\\Helps\\Funcoes' => __DIR__ . '/../..' . '/app/Helps/Funcoes.php',
+        'App\\Model\\Admin\\InsertProdutos' => __DIR__ . '/../..' . '/app/Model/Admin/InsertProdutos.php',
+        'App\\Model\\Admin\\Logout' => __DIR__ . '/../..' . '/app/Model/Admin/Logout.php',
+        'App\\Model\\Admin\\TabelaFuncionario' => __DIR__ . '/../..' . '/app/Model/Admin/TabelaFuncionario.php',
+        'App\\Model\\Admin\\TabelaProdutos' => __DIR__ . '/../..' . '/app/Model/Admin/TabelaProdutos.php',
+        'App\\Model\\Home\\CadastroUser' => __DIR__ . '/../..' . '/app/Model/Home/CadastroUser.php',
+        'App\\Model\\Home\\Login' => __DIR__ . '/../..' . '/app/Model/Home/Login.php',
+        'App\\Model\\Home\\Loginatteempt' => __DIR__ . '/../..' . '/app/Model/Home/Loginatteempt.php',
+        'App\\Model\\Home\\TabelaProdutos' => __DIR__ . '/../..' . '/app/Model/Home/TabelaProdutos.php',
+        'App\\Models\\CreateFuncionario' => __DIR__ . '/../..' . '/app/Model/Admin/CreateFuncionario.php',
+        'FrameworkWesllen\\Date\\Model' => __DIR__ . '/..' . '/frameworkWesllen/Date/Model.php',
+        'FrameworkWesllen\\Date\\Session' => __DIR__ . '/..' . '/frameworkWesllen/Date/Session.php',
+        'FrameworkWesllen\\Date\\conexao' => __DIR__ . '/..' . '/frameworkWesllen/Date/Conexao.php',
+        'FrameworkWesllen\\Http\\Controller' => __DIR__ . '/..' . '/frameworkWesllen/Http/Controller.php',
+        'FrameworkWesllen\\Http\\View' => __DIR__ . '/..' . '/frameworkWesllen/Http/View.php',
+        'FrameworkWesllen\\Routing\\Route' => __DIR__ . '/..' . '/frameworkWesllen/Routing/Route.php',
+        'FrameworkWesllen\\System' => __DIR__ . '/..' . '/frameworkWesllen/System.php',
+        'Klein\\AbstractResponse' => __DIR__ . '/..' . '/klein/klein/src/Klein/AbstractResponse.php',
+        'Klein\\AbstractRouteFactory' => __DIR__ . '/..' . '/klein/klein/src/Klein/AbstractRouteFactory.php',
+        'Klein\\App' => __DIR__ . '/..' . '/klein/klein/src/Klein/App.php',
+        'Klein\\DataCollection\\DataCollection' => __DIR__ . '/..' . '/klein/klein/src/Klein/DataCollection/DataCollection.php',
+        'Klein\\DataCollection\\HeaderDataCollection' => __DIR__ . '/..' . '/klein/klein/src/Klein/DataCollection/HeaderDataCollection.php',
+        'Klein\\DataCollection\\ResponseCookieDataCollection' => __DIR__ . '/..' . '/klein/klein/src/Klein/DataCollection/ResponseCookieDataCollection.php',
+        'Klein\\DataCollection\\RouteCollection' => __DIR__ . '/..' . '/klein/klein/src/Klein/DataCollection/RouteCollection.php',
+        'Klein\\DataCollection\\ServerDataCollection' => __DIR__ . '/..' . '/klein/klein/src/Klein/DataCollection/ServerDataCollection.php',
+        'Klein\\Exceptions\\DispatchHaltedException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/DispatchHaltedException.php',
+        'Klein\\Exceptions\\DuplicateServiceException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/DuplicateServiceException.php',
+        'Klein\\Exceptions\\HttpException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/HttpException.php',
+        'Klein\\Exceptions\\HttpExceptionInterface' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/HttpExceptionInterface.php',
+        'Klein\\Exceptions\\KleinExceptionInterface' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/KleinExceptionInterface.php',
+        'Klein\\Exceptions\\LockedResponseException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/LockedResponseException.php',
+        'Klein\\Exceptions\\RegularExpressionCompilationException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/RegularExpressionCompilationException.php',
+        'Klein\\Exceptions\\ResponseAlreadySentException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/ResponseAlreadySentException.php',
+        'Klein\\Exceptions\\RoutePathCompilationException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/RoutePathCompilationException.php',
+        'Klein\\Exceptions\\UnhandledException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/UnhandledException.php',
+        'Klein\\Exceptions\\UnknownServiceException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/UnknownServiceException.php',
+        'Klein\\Exceptions\\ValidationException' => __DIR__ . '/..' . '/klein/klein/src/Klein/Exceptions/ValidationException.php',
+        'Klein\\HttpStatus' => __DIR__ . '/..' . '/klein/klein/src/Klein/HttpStatus.php',
+        'Klein\\Klein' => __DIR__ . '/..' . '/klein/klein/src/Klein/Klein.php',
+        'Klein\\Request' => __DIR__ . '/..' . '/klein/klein/src/Klein/Request.php',
+        'Klein\\Response' => __DIR__ . '/..' . '/klein/klein/src/Klein/Response.php',
+        'Klein\\ResponseCookie' => __DIR__ . '/..' . '/klein/klein/src/Klein/ResponseCookie.php',
+        'Klein\\Route' => __DIR__ . '/..' . '/klein/klein/src/Klein/Route.php',
+        'Klein\\RouteFactory' => __DIR__ . '/..' . '/klein/klein/src/Klein/RouteFactory.php',
+        'Klein\\ServiceProvider' => __DIR__ . '/..' . '/klein/klein/src/Klein/ServiceProvider.php',
+        'Klein\\Validator' => __DIR__ . '/..' . '/klein/klein/src/Klein/Validator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit7013c645b851bd3be353a1f6e46b5a8d::$classMap;
 
         }, null, ClassLoader::class);
     }

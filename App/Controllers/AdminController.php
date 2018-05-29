@@ -18,6 +18,8 @@ use App\Controllers\BaseControllers\baseAdminController;
 use App\Model\Admin\TabelaProdutos;
 use App\Model\Admin\InsertProdutos;
 use App\Model\Admin\Logout;
+use App\Model\Admin\UpdateProduto;
+use App\Model\Admin\DeletarProduto;
 
 /**
  * Essa classe @extends da classe BaseAdminController
@@ -41,8 +43,9 @@ class AdminController extends baseAdminController {
      */
     public function produto() {
         $model = new TabelaProdutos();
-        $codicoes = array("condicao" => "JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor");
-        $dados['Produtos'] = $model->readChave($codicoes, $campos = "*", $where = "");
+        
+        $codicoes = array("condicao" => "produto as p JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor");
+        $dados['Produtos'] = $model->readJoin($codicoes, $campos = "*");
         $this->service->render('Admin/produtos.phtml', $dados);
     }
 
@@ -117,6 +120,36 @@ class AdminController extends baseAdminController {
         }
     }
     
+    public function removerProduto(){
+        $id = $_GET['id'];
+       $deleta = new DeletarProduto();
+        $r = $deleta->deletando($id);
+        if($r){
+            $this->response->redirect('/admin/produtos')->send();
+        }else{
+            $this->response->redirect('/admin/produtos')->send();
+        }
+        
+    }
+    
+    public function editarProdutos(){
+        $id = $_GET['id'];
+        $tabela = new TabelaProdutos();
+        $dados['Produtos'] = $tabela->editar($id);
+        $this->service->render('Admin/editar.phtml', $dados);
+    }
+    
+    public function editarProd(){
+        $update = new UpdateProduto();
+        $r = $update->updateProduto($_POST);
+        if($r){
+            $this->response->redirect('/admin/produtos')->send();        
+        } else {
+            $_SESSION['erro'] = "Erro: Ao tentar atualizado!";
+            $this->response->redirect('/admin/produtos')->send();
+        }
+    }
+
     /**
      * Esse @method destroi a sessao criada e redireciona o cliente para a view index do controller HomeController
      */

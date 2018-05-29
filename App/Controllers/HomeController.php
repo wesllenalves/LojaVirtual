@@ -1,4 +1,5 @@
 <?php
+
 /**
  * *description* Essa classe HomeController é um controller que vai cuidar de todas a parte de gerenciamento das paginas
  * com aceso do public externo, por tanto gerenciara as rederização das views e o contato com as classe
@@ -11,6 +12,7 @@
  * @method Public sair() renderizar /index/sair
  * @author Wesllen Masoliiny <wesllenalves@gmail.com>
  */
+
 namespace App\Controllers;
 
 use App\Controllers\BaseControllers\baseHomeController;
@@ -19,7 +21,7 @@ use App\Model\Home\Login;
 use App\Model\Home\TabelaProdutos;
 use App\Model\Home\CadastroUser;
 use App\Model\Home\Loginatteempt;
-use PHPMailer\PHPMailer\PHPMailer;
+use App\Model\Home\MinhaConta;
 
 /**
  * Essa classe @exteds da classe baseHomeController
@@ -29,18 +31,18 @@ class HomeController extends baseHomeController {
     /**
      * Esse @method <b>index</b> vai se comunicar com a classes da model @class TabelaProdutos
      * trazendo todos os produtos cadastrados no banco de dados para a tela inicial
-     */    
+     */
     public function index() {
         $model = new TabelaProdutos();
 
         //podera so passar a condição diretamente 
-        $codicoes = array("condicao" => "JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor");
-        
+        $codicoes =  "JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor";
+
         //Exemplo Trazer um objeto especifico      
         // $dados['Produtos'] = $model->readChave($codicoes, $campos = "*", $where= "codigoProduto = 1");  
-        
         //Trazer todos objetos
-        $dados['Produtos'] = $model->readChave($codicoes);
+        
+        $dados['Produtos'] = $model->ler();
         $this->service->render('Home/index.phtml', $dados);
     }
 
@@ -65,15 +67,22 @@ class HomeController extends baseHomeController {
             if ($model->CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) === TRUE) {
                 $_SESSION['erro'] = "Preencha todos os campos";
                 $this->response->redirect('/index/login')->send();
-                exit;            
-     } elseif ($model->VerificarTentativas($_POST) != TRUE) {
-            $_SESSION['erro'] = "Você alcançou o numero de 8 tentativas frustadas de login entre em contato com o administrador";
-            $this->response->redirect('/index/login')->send();
-        } else {           
+                exit;
+            } elseif ($model->VerificarTentativas($_POST) != TRUE) {
+                $_SESSION['erro'] = "Você alcançou o numero de 8 tentativas frustadas de login entre em contato com o administrador";
+                $this->response->redirect('/index/login')->send();
+            } else {
                 $result = $model->autentication(filter_input_array(INPUT_POST, $_POST));
                 if ($result) {
-                    $this->response->redirect('/admin')->send();
-                } else {                  
+                    session_start();
+                    if (($_SESSION["tipoUsuario"]) === "comun") {
+                        $this->response->redirect('/index/minhaconta')->send();
+                    } else {
+                        $this->response->redirect('/admin')->send();
+                    }
+
+                    
+                } else {
                     $_SESSION['erro'] = "Usuário inválido";
                     $this->response->redirect('/index/login')->send();
                     exit;
@@ -81,15 +90,14 @@ class HomeController extends baseHomeController {
             }
         }
     }
-    
+
     /**
      * Esse @method <b>cadastroView</b> faz a redenrização da view de cadastro
      */
     public function cadastroView() {
         $this->service->render('Home/cadastro.phtml');
     }
-    
-    
+
     /**
      * Esse @method <b>Cadasta<b> faz a validação junto a model @class CadastroUser verifica se já existe 
      * cadastro igual no banco de dados caso exista e redirecionado para a view de cadastro apresentando erro
@@ -119,9 +127,9 @@ class HomeController extends baseHomeController {
             $this->response->redirect('/index/cadastro')->send();
             exit;
         } else {
-            
+
             $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-            
+
             $nome = addslashes($post['nome']);
             $email = addslashes($post['email']);
             $senha = addslashes($post['senha']);
@@ -130,7 +138,7 @@ class HomeController extends baseHomeController {
             $dataNasc = addslashes($post['dataNasc']);
             $celular = addslashes($post['celular']);
             $telefoneFixo = addslashes($post['telefoneFixo']);
-            $tipoUsuario = 0;
+            $tipoUsuario = "admin";
 
             $cep = addslashes($post['cep']);
             $rua = addslashes($post['rua']);
@@ -138,41 +146,48 @@ class HomeController extends baseHomeController {
             $cidade = addslashes($post['cidade']);
             $estado = addslashes($post['uf']);
             $complemento = addslashes($post['complemento']);
-            
 
-//            $dados = array(
-//                "0" =>
-//                        array(
-//                            "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1),
-//                            "salt" => $salt, "cpf" => $cpf, "dataNas" => $dataNasc,
-//                            "celular" => $celular, "telefoneFixo" => $telefoneFixo, "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2)
-//                        ),
-//                "1" =>
-//                        array(
-//                            "cep" => $cep, "rua" => $rua, "bairro" => $bairro, "cidade" => $cidade,
-//                            "estado" => $estado, "complemento" => $complemento
-//                        )
-//                
-//            );            
 
-           
-            //if ($model->insertEstrangeiro($dados)) {  
-                
+            $dados = array(
+                "0" =>
+                array(
+                    "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1),
+                    "salt" => $salt, "cpf" => $cpf, "dataNas" => $dataNasc,
+                    "celular" => $celular, "telefoneFixo" => $telefoneFixo, "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2)
+                ),
+                "1" =>
+                array(
+                    "cep" => $cep, "rua" => $rua, "bairro" => $bairro, "cidade" => $cidade,
+                    "estado" => $estado, "complemento" => $complemento
+                )
+            );
+            if ($model->insertEstrangeiro($dados)) {
+
                 $dados = array(
                     "email" => $email,
                     "assunto" => 'Cadastro com sucesso',
                     "nome" => $nome,
                     "mensagem" => 'Parabéns foi realizado o seu cadastro com sucesso em nossa plataforma'
-                    );
+                );
                 $funcoes->EnviarEmail($dados);
+
                 $_SESSION['success'] = "Cadastrado com Sucesso";
-                //$this->response->redirect('/index/cadastro')->send();
+                $this->response->redirect('/index/cadastro')->send();
                 exit;
-//            } else {
-//                $_SESSION['erro'] = "Não foi possivel fazer seu Cadastro por favor entre em contato com email suporte@suport.com";
-//                $this->response->redirect('/index/cadastro')->send();
-//                exit;
-//            }
+            } else {
+                $_SESSION['erro'] = "Não foi possivel fazer seu Cadastro por favor entre em contato com email suporte@suport.com";
+                $this->response->redirect('/index/cadastro')->send();
+                exit;
+            }
         }
     }
+    
+    
+    public function minhaconta(){
+        $ler = new MinhaConta();
+         $dados['clientes'] = $ler->ler();        
+         
+         $this->service->render('Home/minhaconta.phtml', $dados);
+    }
+
 }

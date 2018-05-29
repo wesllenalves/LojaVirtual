@@ -58,7 +58,9 @@ class Login extends Model {
                 $data = Session::getInstance();
                 $data->authenticado = TRUE;
                 $data->login = $login["nome"];
-                $data->id = $id['idusers'];         
+                $data->logado = "";
+                $data->id = $id['codigoCliente'];         
+                $data->tipoUsuario = $login['tipoUsuario'];                   
                 return TRUE;
             
             }
