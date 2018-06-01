@@ -7,29 +7,29 @@
  */
 
 namespace App\Model\Home;
-use FrameworkWesllen\Date\Model;
+use FrameworkWesllen\ModelEloquent;
+use App\Model\Home\Cliente;
 /**
  * Description of Loginatteempt
  *
  * @author laboratorio
  */
-class Loginatteempt extends Model{
+class Loginatteempt extends ModelEloquent{
+
+    public $table = "login_attempts";
+    public $timestamps = false;
+    protected $primaryKey = "id";
+    protected $fillable = ['id', 'user_id', 'created_at'];
     
-    protected $tabela = "login_attempts";
+    public function cliente(){
+        return $this->hasOne(Cliente::class);
+    }
     
     public function TotalDeTentativas($id){    
         
-        if(!is_null($id)){
-            $user_id = $id[0];           
-            
-           $id_user = $user_id['codigoCliente'];
-           
-           $sql1 = "user_id='{$id_user}'"; 
-                   
-           $dados1 =  $this->read('*', $sql1);
-           
-           return count($dados1);
-          //return $user_id;
+        if(!is_null($id)){            
+           $dados1 = Loginatteempt::all()->where('user_id', '=', $id);           
+           return count($dados1);          
         }       
     }
     

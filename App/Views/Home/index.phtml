@@ -44,18 +44,12 @@
                 	foreach ($this->Produtos as $produto ) {
                 	
                                                   
-		                $codigo = $produto['codigoProduto'];
+		                $codigo = $produto['id'];
 		                $nomeProduto = $produto['nomeProduto'];
 		                $qtdEstoque = $produto['qtdEstoque'];
 		                $valor = $produto['valor'];
-		                $nomeFornecedor = $produto['nomeFornecedor'];
-		                $cnpj = $produto['cnpj'];
-		                $telefone = $produto['telefone'];
-		                $email = $produto['email'];
-		                $foto = $produto['fotoProduto'];
-
-            	
-							
+		                $foto = $produto['fotoProduto'];                             
+                 
             			echo '<div class="col-md-4 col-sm-6 col-xs-6">
 								<div class="product product-single">
 									<div class="product-thumb">
@@ -64,7 +58,7 @@
 											<span class="sale">-20%</span>
 										</div>
 										<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-										<img src="'.assets("img/produtos/").$foto.'" alt="">
+										<img id="imagens" src="'.assets("img/produtos/").$foto.'" alt="">
 									</div>
 									<div class="product-body">
 										<h3 class="product-price">R$: '.$valor.'<del class="product-old-price"></del></h3>

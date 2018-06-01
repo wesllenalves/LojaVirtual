@@ -1,11 +1,8 @@
 <?php
-
-
-
 if (isset($_GET['sair']) == 'sim') {
     session_destroy();
     session_unset();
-   header("Location:" . base_url("") . "/index");
+    header("Location:" . base_url("") . "/index");
 }
 
 
@@ -100,90 +97,78 @@ if (isset($_GET['acao'])) {
 
         <!-- Adicionando Javascript -->
         <!-- Adicionando JQuery -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
         <!-- Consultar CEP -->
         <script type="text/javascript" src="<?= assets("Home/js/consultarCEP.js") ?>"></script>
         <!-- Adicionando Javascript -->
-    <script type="text/javascript" >
+        <script type="text/javascript" >
 
-        $(document).ready(function() {
+            $(document).ready(function () {
 
-            function limpa_formulário_cep() {
-                // Limpa valores do formulário de cep.
-                $("#rua").val("");
-                $("#bairro").val("");
-                $("#cidade").val("");
-                $("#uf").val("");
-                $("#ibge").val("");
-            }
-            
-            //Quando o campo cep perde o foco.
-            $("#cep").blur(function() {
+                function limpa_formulário_cep() {
+                    // Limpa valores do formulário de cep.
+                    $("#rua").val("");
+                    $("#bairro").val("");
+                    $("#cidade").val("");
+                    $("#uf").val("");
+                    $("#ibge").val("");
+                }
 
-                //Nova variável "cep" somente com dígitos.
-                var cep = $(this).val().replace(/\D/g, '');
+                //Quando o campo cep perde o foco.
+                $("#cep").blur(function () {
 
-                //Verifica se campo cep possui valor informado.
-                if (cep != "") {
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = $(this).val().replace(/\D/g, '');
 
-                    //Expressão regular para validar o CEP.
-                    var validacep = /^[0-9]{8}$/;
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
 
-                    //Valida o formato do CEP.
-                    if(validacep.test(cep)) {
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
 
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#rua").val("...");
-                        $("#bairro").val("...");
-                        $("#cidade").val("...");
-                        $("#uf").val("...");
-                        $("#ibge").val("...");
+                        //Valida o formato do CEP.
+                        if (validacep.test(cep)) {
 
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            $("#rua").val("...");
+                            $("#bairro").val("...");
+                            $("#cidade").val("...");
+                            $("#uf").val("...");
+                            $("#ibge").val("...");
 
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#rua").val(dados.logradouro);
-                                $("#bairro").val(dados.bairro);
-                                $("#cidade").val(dados.localidade);
-                                $("#uf").val(dados.uf);
-                                $("#ibge").val(dados.ibge);
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
+                            //Consulta o webservice viacep.com.br/
+                            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#rua").val(dados.logradouro);
+                                    $("#bairro").val(dados.bairro);
+                                    $("#cidade").val(dados.localidade);
+                                    $("#uf").val(dados.uf);
+                                    $("#ibge").val(dados.ibge);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+                            alert("Formato de CEP inválido.");
+                        }
                     } //end if.
                     else {
-                        //cep é inválido.
+                        //cep sem valor, limpa formulário.
                         limpa_formulário_cep();
-                        alert("Formato de CEP inválido.");
                     }
-                } //end if.
-                else {
-                    //cep sem valor, limpa formulário.
-                    limpa_formulário_cep();
-                }
+                });
             });
-        });
 
-    </script>
-
-        <style type="text/css">
-            #formulariologin{
-
-                margin-left: 5%;
-            }
-            #logar{
-                margin-left: 30%;
-            }
-        </style>
+        </script>        
 
     </head>
 
@@ -211,7 +196,7 @@ if (isset($_GET['acao'])) {
                                     <div class="header-btns-icon">
                                         <i class="fa fa-user-o"></i>
                                     </div>
-                                    <?php if (isset($_SESSION['logado']) == "sim") { ?>
+<?php if (isset($_SESSION['logado']) == "sim") { ?>
                                         <strong class="text-uppercase">Minha Conta <i class="fa fa-caret-down"></i></strong>
 
                                     </div>
@@ -221,23 +206,23 @@ if (isset($_GET['acao'])) {
                                         <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
                                         <li><a href="?sair=sim"><i class="fa fa-unlock-alt"></i> Sair</a></li>					
                                     </ul>
-                                <?php } ?>
-                                <?php
-                                if (isset($_SESSION['logado']) != 'sim') {
-                                    ?>
+<?php } ?>
+<?php
+if (isset($_SESSION['logado']) != 'sim') {
+    ?>
                                 <li><a class="text-uppercase" href="<?= base_url('') ?>/index/login">Login</a> / <a class="text-uppercase" href="<?= base_url('') ?>/index/cadastro" >Criar</a></li>
-                                <?php
-                            }
-                            ?>
+                                    <?php
+                                }
+                                ?>
                             </li>
                             <!-- /Account -->
 
                             <!-- Cart -->
 
-                            <?php
-                            if (count($_SESSION['carrinho']) == 0) {
+<?php
+if (count($_SESSION['carrinho']) == 0) {
 
-                                echo ' 
+    echo ' 
                                                 <li class="header-cart dropdown default-dropdown">
                                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                                 <div class="header-btns-icon">
@@ -263,14 +248,14 @@ if (isset($_GET['acao'])) {
                                     </div>
                                 </div>
                             </li>';
-                            } else {
-                                ?>                   
+} else {
+    ?>                   
 
                                 <li class="header-cart dropdown default-dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <div class="header-btns-icon">
                                             <i class="fa fa-shopping-cart"></i>
-                                            <?php $quantidade = count($_SESSION['carrinho']); ?>
+    <?php $quantidade = count($_SESSION['carrinho']); ?>
                                             <span class="qty"><?= $quantidade ?></span>
                                         </div>
                                         <strong class="text-uppercase">My Cart:</strong>
@@ -282,22 +267,22 @@ if (isset($_GET['acao'])) {
                                             <div class="shopping-cart-list">                                    
 
 
-                                                <?php
-                                                foreach ($_SESSION['carrinho'] as $id => $qtd) {
+    <?php
+    foreach ($_SESSION['carrinho'] as $id => $qtd) {
 
 
-                                                    $sql = "SELECT * FROM produto as p JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor WHERE codigoProduto = ' $id'";
-                                                    $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                                                    $exibe = mysqli_fetch_assoc($query);
+        $sql = "SELECT * FROM produto as p JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor WHERE codigoProduto = ' $id'";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $exibe = mysqli_fetch_assoc($query);
 
-                                                    $codigo = $exibe['codigoProduto'];
-                                                    $nomeProduto = $exibe['nomeProduto'];
-                                                    $qtdEstoque = $exibe['qtdEstoque'];
-                                                    $valor = $exibe['valor'];
-                                                    $foto = $exibe['fotoProduto'];
-                                                    $sub = $exibe['valor'] * $qtd;
+        $codigo = $exibe['codigoProduto'];
+        $nomeProduto = $exibe['nomeProduto'];
+        $qtdEstoque = $exibe['qtdEstoque'];
+        $valor = $exibe['valor'];
+        $foto = $exibe['fotoProduto'];
+        $sub = $exibe['valor'] * $qtd;
 
-                                                    echo '<div class="product product-widget">
+        echo '<div class="product product-widget">
             <div class="product-thumb">
               <img src="./img/' . $foto . '" alt="" width="100" height="80">
              </div>
@@ -308,15 +293,15 @@ if (isset($_GET['acao'])) {
                 <button class="cancel-btn"><a href="?acao=del&id=' . $id . '"><i class="fa fa-trash"></i></a></button>
                 </div>                
                  ';
-                                                }
-                                                ?>
+    }
+    ?>
                                                 <div class="shopping-cart-btns">
                                                     <button class="main-btn">View Cart</button>
                                                     <a href="checkout.php"><button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button></a>
                                                 </div>
-                                                <?php
-                                            }
-                                            ?>
+    <?php
+}
+?>
 
 
 
@@ -385,7 +370,7 @@ if (isset($_GET['acao'])) {
 
 
         <!-- AQUI VAI O CONTEÚDO DAS PÁGINAS -->
-        <?= $this->yieldView(); ?>
+<?= $this->yieldView(); ?>
 
 
 

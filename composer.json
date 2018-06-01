@@ -2,7 +2,8 @@
     "name": "Wesllen",
     "require": {"php": ">=5.3",
         "klein/klein": "^2.1",
-        "phpmailer/phpmailer": "^6.0"},
+        "phpmailer/phpmailer": "^6.0",
+        "illuminate/database": "^5.5"},
     "autoload": {
         "psr-4":{
             "FrameworkWesllen\\": "vendor/frameworkWesllen/",

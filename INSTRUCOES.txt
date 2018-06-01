@@ -1,0 +1,10 @@
+O login Admin é:
+admin@admin.com.br
+senha: 123456
+
+o login para o Cliente é:
+wesllenalves@gmail.com
+senha: 123456
+
+o nome do banco de dados é:
+einstein

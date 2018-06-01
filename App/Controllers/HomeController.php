@@ -18,10 +18,11 @@ namespace App\Controllers;
 use App\Controllers\BaseControllers\baseHomeController;
 use App\Helps\Funcoes;
 use App\Model\Home\Login;
-use App\Model\Home\TabelaProdutos;
-use App\Model\Home\CadastroUser;
+use App\Model\Home\Produtos;
 use App\Model\Home\Loginatteempt;
 use App\Model\Home\MinhaConta;
+use App\Model\Home\Cliente;
+use App\Model\Home\Endereco;
 
 /**
  * Essa classe @exteds da classe baseHomeController
@@ -32,18 +33,16 @@ class HomeController extends baseHomeController {
      * Esse @method <b>index</b> vai se comunicar com a classes da model @class TabelaProdutos
      * trazendo todos os produtos cadastrados no banco de dados para a tela inicial
      */
-    public function index() {
-        $model = new TabelaProdutos();
+    private $Produto;
 
-        //podera so passar a condição diretamente 
-        $codicoes =  "JOIN fornecedor as f ON p.FKFornecedor = f.  codigoFornecedor";
+    public function __construct() {
+        $this->Produto = new Produtos();
+    }
 
-        //Exemplo Trazer um objeto especifico      
-        // $dados['Produtos'] = $model->readChave($codicoes, $campos = "*", $where= "codigoProduto = 1");  
-        //Trazer todos objetos
-        
-        $dados['Produtos'] = $model->ler();
-        $this->service->render('Home/index.phtml', $dados);
+    public function index() {        
+        $dados = $this->Produto->with('Fornecedor')->get();
+        $dado['Produtos'] = json_decode($dados, true);
+        $this->service->render('Home/index.phtml', $dado);
     }
 
     /**
@@ -61,33 +60,31 @@ class HomeController extends baseHomeController {
     public function verificaLogin() {
         session_start();
         $fazerLog = filter_input(INPUT_POST, 'fazerLog');
-        $attemps = new Loginatteempt();
+        //$attemps = new Loginatteempt();
         if (isset($fazerLog)) {
             $model = new Login();
-            if ($model->CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) === TRUE) {
+            if (Cliente::CheckIsNullLogin(filter_input_array(INPUT_POST, FILTER_DEFAULT)) === TRUE) {
                 $_SESSION['erro'] = "Preencha todos os campos";
                 $this->response->redirect('/index/login')->send();
                 exit;
-            } elseif ($model->VerificarTentativas($_POST) != TRUE) {
-                $_SESSION['erro'] = "Você alcançou o numero de 8 tentativas frustadas de login entre em contato com o administrador";
+            } elseif (Cliente::VerificarTentativas(filter_input_array(INPUT_POST, FILTER_DEFAULT)) != TRUE) {
+                $_SESSION['erro'] = "Você alcançou o numero de 10 tentativas frustadas de login entre em contato com o administrador";
                 $this->response->redirect('/index/login')->send();
-            } else {
-                $result = $model->autentication(filter_input_array(INPUT_POST, $_POST));
-                if ($result) {
-                    session_start();
-                    if (($_SESSION["tipoUsuario"]) === "comun") {
-                        $this->response->redirect('/index/minhaconta')->send();
-                    } else {
-                        $this->response->redirect('/admin')->send();
-                    }
-
-                    
-                } else {
-                    $_SESSION['erro'] = "Usuário inválido";
-                    $this->response->redirect('/index/login')->send();
-                    exit;
-                }
-            }
+           } //else {
+//                $result = $model->autentication(filter_input_array(INPUT_POST, $_POST));
+//                if ($result) {
+//                    session_start();
+//                    if (($_SESSION["tipoUsuario"]) === "comun") {
+//                        $this->response->redirect('/index/minhaconta')->send();
+//                    } else {
+//                        $this->response->redirect('/admin')->send();
+//                    }
+//                } else {
+//                    $_SESSION['erro'] = "Usuário inválido";
+//                    $this->response->redirect('/index/login')->send();
+//                    exit;
+//                }
+//            }
         }
     }
 
@@ -105,72 +102,57 @@ class HomeController extends baseHomeController {
      */
     public function cadastra() {
         session_start();
-        $model = new CadastroUser();
         $funcoes = new Funcoes();
+        $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $nome = addslashes($post['nome']);
+        $email = addslashes($post['email']);
+        $senha = addslashes($post['senha']);
+        $salt = password_hash($senha, PASSWORD_DEFAULT);
+        $cpf = addslashes($post['cpf']);
+        $dataNasc = addslashes($post['dataNasc']);
+        $celular = addslashes($post['celular']);
+        $telefoneFixo = addslashes($post['telefoneFixo']);
+        $tipoUsuario = "comun";
+        $cep = addslashes($post['cep']);
+        $rua = addslashes($post['rua']);
+        $bairro = addslashes($post['bairro']);
+        $cidade = addslashes($post['cidade']);
+        $estado = addslashes($post['uf']);
+        $complemento = addslashes($post['complemento']);
 
-        if ($model->CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
+        if (Cliente::CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
             $_SESSION['erro'] = "Por favor digite todos os Campos";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->CheckCpf(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
+        } elseif (Endereco::CheckIsNull(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
+            $_SESSION['erro'] = "Por favor digite todos os Campos";
+            $this->response->redirect('/index/cadastro')->send();
+            exit;
+        } elseif (Cliente::CheckCpf(filter_input_array(INPUT_POST, FILTER_DEFAULT)) == TRUE) {
             //verifica se o cpf e valido se nao redireciono para a pagina cadastro com uma sessao de erro
             $_SESSION['erro'] = "Por favor digite um CPF válido!";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->CheckRepitaSenha(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
+        } elseif (Cliente::CheckRepitaSenha(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
             //Verifica se as senhas conicidem se não volta para pagina de castrados com uma sessao de erro
             $_SESSION['erro'] = "Por favor digite as senhas iguais";
             $this->response->redirect('/index/cadastro')->send();
             exit;
-        } elseif ($model->ExitsUser(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
+        } elseif (Cliente::ExitsUser(filter_input_array(INPUT_POST, FILTER_DEFAULT))) {
             $_SESSION['erro'] = "Ja Existe os Mesmos Dados Cadastrados no Banco";
             $this->response->redirect('/index/cadastro')->send();
             exit;
         } else {
+            $dadosForm = [
+                "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1), "salt" => $salt,
+                "cpf" => $cpf, "dataNas" => $dataNasc, "celular" => $celular, "telefoneFixo" => $telefoneFixo,
+                "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2), "cep" => $cep, "rua" => $rua,
+                "bairro" => $bairro, "cidade" => $cidade, "estado" => $estado, "complemento" => $complemento
+            ];
 
-            $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-            $nome = addslashes($post['nome']);
-            $email = addslashes($post['email']);
-            $senha = addslashes($post['senha']);
-            $salt = password_hash($senha, PASSWORD_DEFAULT);
-            $cpf = addslashes($post['cpf']);
-            $dataNasc = addslashes($post['dataNasc']);
-            $celular = addslashes($post['celular']);
-            $telefoneFixo = addslashes($post['telefoneFixo']);
-            $tipoUsuario = "admin";
-
-            $cep = addslashes($post['cep']);
-            $rua = addslashes($post['rua']);
-            $bairro = addslashes($post['bairro']);
-            $cidade = addslashes($post['cidade']);
-            $estado = addslashes($post['uf']);
-            $complemento = addslashes($post['complemento']);
-
-
-            $dados = array(
-                "0" =>
-                array(
-                    "nomeCliente" => $nome, "email" => $email, "senha" => $funcoes->base64($senha, 1),
-                    "salt" => $salt, "cpf" => $cpf, "dataNas" => $dataNasc,
-                    "celular" => $celular, "telefoneFixo" => $telefoneFixo, "tipoUsuario" => $tipoUsuario, "dataCadas" => $funcoes->dataAtual(2)
-                ),
-                "1" =>
-                array(
-                    "cep" => $cep, "rua" => $rua, "bairro" => $bairro, "cidade" => $cidade,
-                    "estado" => $estado, "complemento" => $complemento
-                )
-            );
-            if ($model->insertEstrangeiro($dados)) {
-
-                $dados = array(
-                    "email" => $email,
-                    "assunto" => 'Cadastro com sucesso',
-                    "nome" => $nome,
-                    "mensagem" => 'Parabéns foi realizado o seu cadastro com sucesso em nossa plataforma'
-                );
-                $funcoes->EnviarEmail($dados);
-
+            $cliente = Cliente::create($dadosForm);
+            if ($cliente) {
+                $cliente->endereco()->create($dadosForm);
                 $_SESSION['success'] = "Cadastrado com Sucesso";
                 $this->response->redirect('/index/cadastro')->send();
                 exit;
@@ -181,13 +163,12 @@ class HomeController extends baseHomeController {
             }
         }
     }
-    
-    
-    public function minhaconta(){
+
+    public function minhaconta() {
         $ler = new MinhaConta();
-         $dados['clientes'] = $ler->ler();        
-         
-         $this->service->render('Home/minhaconta.phtml', $dados);
+        $dados['clientes'] = $ler->ler();
+
+        $this->service->render('Home/minhaconta.phtml', $dados);
     }
 
 }
